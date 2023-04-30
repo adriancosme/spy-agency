@@ -1,7 +1,7 @@
 import { HitmanRepositoryMock } from '../../../../test/Hitmen/__mocks__/HitmanRepositoryMock';
 import { HitRepositoryMock } from '../../../../test/Hits/__mocks__/HitRepositoryMock';
 import { Cuid } from '../../../../src/Shared/domain/value-object/Cuid';
-import { MarkAsCompleted } from '../../../../src/Hits/application/MarkCompleted/MarkAsCompleted';
+import { MarkAsCompleted } from '../../../../src/Hits/application/MarkAsCompleted/MarkAsCompleted';
 import {
   Hitman,
   HitmanEmail,
