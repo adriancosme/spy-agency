@@ -1,7 +1,10 @@
 import { HitId } from '../../../../src/Hits/domain/HitId';
 import { HitRepository } from '../../../../src/Hits/domain/HitRepository';
 import { HitmanId } from '../../../../src/Hitmen/domain/HitmanId';
-import { HitStatus, HitStatusEnum } from '../../../../src/Hits/domain/HitStatus';
+import {
+  HitStatus,
+  HitStatusEnum,
+} from '../../../../src/Hits/domain/HitStatus';
 import { Hit } from '../../../../src/Hits/domain/Hit';
 import { HitmanRepository } from '../../../../src/Hitmen/domain/HitmanRepository';
 
