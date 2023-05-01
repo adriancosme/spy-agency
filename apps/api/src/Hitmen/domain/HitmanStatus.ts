@@ -1,13 +1,17 @@
+import { InvalidArgumentError } from '../../Shared/domain/value-object/InvalidArgumentError';
 import { EnumValueObject } from '../../Shared/domain/value-object/EnumValueObject';
+export enum HitmanStatusEnum {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
 export class HitmanStatus extends EnumValueObject<string> {
-  static VALID_VALUES = ['ACTIVE', 'INACTIVE'];
   static readonly ACTIVE = new HitmanStatus(
     'ACTIVE',
-    HitmanStatus.VALID_VALUES,
+    Object.values(HitmanStatusEnum),
   );
   static readonly INACTIVE = new HitmanStatus(
     'INACTIVE',
-    HitmanStatus.VALID_VALUES,
+    Object.values(HitmanStatusEnum),
   );
 
   constructor(value: string, validValues: string[]) {
@@ -15,6 +19,6 @@ export class HitmanStatus extends EnumValueObject<string> {
   }
 
   protected throwErrorForInvalidValue(value: string): void {
-    throw new Error(`Invalid user status value: ${value}`);
+    throw new InvalidArgumentError(`Invalid user status value: ${value}`);
   }
 }

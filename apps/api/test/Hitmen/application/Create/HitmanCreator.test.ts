@@ -1,3 +1,4 @@
+import { HitmanMother } from '../../../../test/Hitmen/domain/HitmanMother';
 import { HitmanCreator } from '../../../../src/Hitmen/application/Create/HitmanCreator';
 import { Hitman } from '../../../../src/Hitmen/domain/Hitman';
 import { HitmanEmail } from '../../../../src/Hitmen/domain/HitmanEmail';
@@ -5,6 +6,7 @@ import { HitmanId } from '../../../../src/Hitmen/domain/HitmanId';
 import { HitmanPassword } from '../../../../src/Hitmen/domain/HitmanPassword';
 import { HitmanStatus } from '../../../../src/Hitmen/domain/HitmanStatus';
 import { HitmanRepositoryMock } from '../../__mocks__/HitmanRepositoryMock';
+import { CryptoService } from '../../../../src/Shared/infrastructure/crypto.service';
 
 describe('HitmanCreator', () => {
   const invalidEmail = 'fake@email';
@@ -22,7 +24,8 @@ describe('HitmanCreator', () => {
       );
 
       const repository = new HitmanRepositoryMock();
-      const creator = new HitmanCreator(repository);
+      const crypto = new CryptoService();
+      const creator = new HitmanCreator(repository, crypto);
       await creator.run(
         hitman.id.value,
         hitman.name,
@@ -46,7 +49,8 @@ describe('HitmanCreator', () => {
       );
 
       const repository = new HitmanRepositoryMock();
-      const creator = new HitmanCreator(repository);
+      const crypto = new CryptoService();
+      const creator = new HitmanCreator(repository, crypto);
       await creator.run(
         hitman.id.value,
         hitman.name,
@@ -73,7 +77,8 @@ describe('HitmanCreator', () => {
       );
 
       const repository = new HitmanRepositoryMock();
-      const creator = new HitmanCreator(repository);
+      const crypto = new CryptoService();
+      const creator = new HitmanCreator(repository, crypto);
       await creator.run(
         hitman.id.value,
         hitman.name,
@@ -96,7 +101,8 @@ describe('HitmanCreator', () => {
         HitmanStatus.ACTIVE,
       );
       const repository = new HitmanRepositoryMock();
-      const creator = new HitmanCreator(repository);
+      const crypto = new CryptoService();
+      const creator = new HitmanCreator(repository, crypto);
       await creator.run(
         hitman.id.value,
         hitman.name,
@@ -119,7 +125,8 @@ describe('HitmanCreator', () => {
         HitmanStatus.ACTIVE,
       );
       const repository = new HitmanRepositoryMock();
-      const creator = new HitmanCreator(repository);
+      const crypto = new CryptoService();
+      const creator = new HitmanCreator(repository, crypto);
       await creator.run(
         hitman.id.value,
         hitman.name,
@@ -131,7 +138,7 @@ describe('HitmanCreator', () => {
     } catch (error) {
       expect(error).toHaveProperty(
         'message',
-        'Password dont contain at least 8 characters, one letter and one number',
+        'Password dont contain at least 8 characters',
       );
     }
   });

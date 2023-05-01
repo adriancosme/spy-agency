@@ -11,7 +11,10 @@ import {
 import { HitmanRepositoryMock } from '../../../../test/Hitmen/__mocks__/HitmanRepositoryMock';
 import { Hitman } from '../../../../src/Hitmen/domain/Hitman';
 import { HitmanEmail } from '../../../../src/Hitmen/domain/HitmanEmail';
-import { HitmanStatus } from '../../../../src/Hitmen/domain/HitmanStatus';
+import {
+  HitmanStatus,
+  HitmanStatusEnum,
+} from '../../../../src/Hitmen/domain/HitmanStatus';
 import { HitmanPassword } from '../../../../src/Hitmen/domain/HitmanPassword';
 
 describe('HitCreator', () => {
@@ -28,7 +31,10 @@ describe('HitCreator', () => {
       'Juan Perez',
       new HitmanEmail('juanperez@gmail.com'),
       new HitmanPassword('jPerez09124214'),
-      new HitmanStatus(HitmanStatus.ACTIVE.value, HitmanStatus.VALID_VALUES),
+      new HitmanStatus(
+        HitmanStatus.ACTIVE.value,
+        Object.values(HitmanStatusEnum),
+      ),
     );
     hitmanRepository.returnSearchById(hitmanAssignedTo);
 
@@ -59,7 +65,10 @@ describe('HitCreator', () => {
       'Juan Perez',
       new HitmanEmail('juanperez@gmail.com'),
       new HitmanPassword('jPerez09124214'),
-      new HitmanStatus(HitmanStatus.INACTIVE.value, HitmanStatus.VALID_VALUES),
+      new HitmanStatus(
+        HitmanStatus.INACTIVE.value,
+        Object.values(HitmanStatusEnum),
+      ),
     );
     hitmanRepository.returnSearchById(hitmanAssignedTo);
     const hit = new Hit(

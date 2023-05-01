@@ -1,7 +1,10 @@
 import { Hitman } from '../../../Hitmen/domain/Hitman';
 import { HitmanRepository } from '../../../Hitmen/domain/HitmanRepository';
 import { HitmanEmail } from '../../../Hitmen/domain/HitmanEmail';
-import { HitmanStatus } from '../../../Hitmen/domain/HitmanStatus';
+import {
+  HitmanStatus,
+  HitmanStatusEnum,
+} from '../../../Hitmen/domain/HitmanStatus';
 import { InvalidArgumentError } from '../../../Shared/domain/value-object/InvalidArgumentError';
 
 export class HitmanUpdater {
@@ -24,7 +27,7 @@ export class HitmanUpdater {
       name,
       new HitmanEmail(email),
       hitman.password,
-      new HitmanStatus(status, HitmanStatus.VALID_VALUES),
+      new HitmanStatus(status, Object.values(HitmanStatusEnum)),
     );
     return await this.repository.update(newHitman);
   }

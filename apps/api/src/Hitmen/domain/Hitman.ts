@@ -2,7 +2,7 @@ import { AggregateRoot } from '../../Shared/domain/AggregateRoot';
 import { HitmanEmail } from './HitmanEmail';
 import { HitmanId } from './HitmanId';
 import { HitmanPassword } from './HitmanPassword';
-import { HitmanStatus } from './HitmanStatus';
+import { HitmanStatus, HitmanStatusEnum } from './HitmanStatus';
 
 export class Hitman extends AggregateRoot {
   readonly id: HitmanId;
@@ -27,13 +27,19 @@ export class Hitman extends AggregateRoot {
   }
 
   static create(
-    id: HitmanId,
+    id: number,
     name: string,
-    email: HitmanEmail,
-    password: HitmanPassword,
-    status: HitmanStatus,
+    email: string,
+    password: string,
+    status: string,
   ) {
-    const user = new Hitman(id, name, email, password, status);
+    const user = new Hitman(
+      new HitmanId(id),
+      name,
+      new HitmanEmail(email),
+      new HitmanPassword(password),
+      new HitmanStatus(status, Object.values(HitmanStatusEnum)),
+    );
     return user;
   }
 

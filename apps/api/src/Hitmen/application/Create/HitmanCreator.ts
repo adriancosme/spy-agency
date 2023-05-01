@@ -1,12 +1,13 @@
+import { CryptoServiceRepository } from '../../../../src/Shared/domain/CryptoServiceRepository';
 import { Hitman } from '../../../Hitmen/domain/Hitman';
-import { HitmanRepository } from '../../domain/HitmanRepository';
-import { HitmanEmail } from '../../../Hitmen/domain/HitmanEmail';
 import { HitmanPassword } from '../../../Hitmen/domain/HitmanPassword';
-import { HitmanStatus } from '../../../Hitmen/domain/HitmanStatus';
-import { HitmanId } from '../../../Hitmen/domain/HitmanId';
+import { HitmanRepository } from '../../domain/HitmanRepository';
 
 export class HitmanCreator {
-  constructor(private repository: HitmanRepository) {}
+  constructor(
+    private repository: HitmanRepository,
+    private hasher: CryptoServiceRepository,
+  ) {}
 
   async run(
     id: number,
@@ -15,13 +16,12 @@ export class HitmanCreator {
     password: string,
     status: string,
   ) {
-    const hitman = new Hitman(
-      new HitmanId(id),
-      name,
-      new HitmanEmail(email),
-      new HitmanPassword(password),
-      new HitmanStatus(status, HitmanStatus.VALID_VALUES),
-    );
-    return this.repository.save(hitman);
+    const plainPassword = new HitmanPassword(password);
+    if (!plainPassword.isValidPassword()) {
+      throw new Error('Password dont contain at least 8 characters');
+    }
+    const passwordHash = await this.hasher.hashPassword(plainPassword.value);
+    const hitman = Hitman.create(id, name, email, passwordHash, status);
+    this.repository.save(hitman);
   }
 }

@@ -3,7 +3,10 @@ import { Hitman } from '../../../../src/Hitmen/domain/Hitman';
 import { HitmanEmail } from '../../../../src/Hitmen/domain/HitmanEmail';
 import { HitmanId } from '../../../../src/Hitmen/domain/HitmanId';
 import { HitmanPassword } from '../../../../src/Hitmen/domain/HitmanPassword';
-import { HitmanStatus } from '../../../../src/Hitmen/domain/HitmanStatus';
+import {
+  HitmanStatus,
+  HitmanStatusEnum,
+} from '../../../../src/Hitmen/domain/HitmanStatus';
 import { HitmanRepositoryMock } from '../../../../test/Hitmen/__mocks__/HitmanRepositoryMock';
 
 describe('HitmanUpdater', () => {
@@ -21,7 +24,7 @@ describe('HitmanUpdater', () => {
       'John Doe',
       new HitmanEmail(validEmail),
       new HitmanPassword(validPassword),
-      new HitmanStatus('ACTIVE', HitmanStatus.VALID_VALUES),
+      new HitmanStatus('ACTIVE', Object.values(HitmanStatusEnum)),
     );
     repository.returnSearchById(hitman);
     const updater = new HitmanUpdater(repository);
@@ -39,7 +42,7 @@ describe('HitmanUpdater', () => {
       'John Doe',
       new HitmanEmail(validEmail),
       new HitmanPassword(validPassword),
-      new HitmanStatus('INACTIVE', HitmanStatus.VALID_VALUES),
+      new HitmanStatus('INACTIVE', Object.values(HitmanStatusEnum)),
     );
     repository.returnSearchById(hitman);
     const updater = new HitmanUpdater(repository);
@@ -58,7 +61,7 @@ describe('HitmanUpdater', () => {
       'John Doe',
       new HitmanEmail(validEmail),
       new HitmanPassword(validPassword),
-      new HitmanStatus('ACTIVE', HitmanStatus.VALID_VALUES),
+      new HitmanStatus('ACTIVE', Object.values(HitmanStatusEnum)),
     );
     repository.returnSearchById(null);
     const updater = new HitmanUpdater(repository);
@@ -77,7 +80,7 @@ describe('HitmanUpdater', () => {
       'John Doe',
       new HitmanEmail(validEmail),
       new HitmanPassword(validPassword),
-      new HitmanStatus('ACTIVE', HitmanStatus.VALID_VALUES),
+      new HitmanStatus('ACTIVE', Object.values(HitmanStatusEnum)),
     );
     repository.returnSearchById(hitman);
     const updater = new HitmanUpdater(repository);
