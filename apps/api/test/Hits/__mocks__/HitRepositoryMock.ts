@@ -1,5 +1,6 @@
 import { Hit } from 'src/Hits/domain/Hit';
 import { HitRepository } from '../../../src/Hits/domain/HitRepository';
+import { Criteria } from 'src/Shared/domain/criteria/Criteria';
 
 export class HitRepositoryMock implements HitRepository {
   private saveMock = jest.fn();
@@ -7,18 +8,22 @@ export class HitRepositoryMock implements HitRepository {
   private searchByIdMock = jest.fn();
   private deleteMock = jest.fn();
   private updateMock = jest.fn();
+  private matchingMock = jest.fn();
   private hit: Hit;
   private hits: Hit[];
 
-  async returnSearchAll(hits: Hit[]): Promise<Hit[]> {
+  returnSearchAll(hits: Hit[]): void {
     this.hits = hits;
-    return this.hits;
   }
 
-  async returnSeachById(hit: Hit): Promise<Hit> {
+  returnSeachById(hit: Hit): void {
     this.hit = hit;
-    return this.hit;
   }
+
+  returnMatching(hits: Hit[]): void {
+    this.hits = hits;
+  }
+
   async save(hit: Hit): Promise<void> {
     this.saveMock(hit);
   }
@@ -59,5 +64,14 @@ export class HitRepositoryMock implements HitRepository {
 
   assertDeleteHasBeenCalledWith(id: string) {
     expect(this.deleteMock).toHaveBeenCalledWith(id);
+  }
+
+  async matching(criteria: Criteria): Promise<Hit[]> {
+    this.matchingMock(criteria);
+    return this.hits;
+  }
+
+  assertMatchingHasBeenCalledWith() {
+    expect(this.matchingMock).toHaveBeenCalled();
   }
 }
