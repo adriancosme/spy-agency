@@ -1,7 +1,7 @@
 import { HitId } from '../../../../src/Hits/domain/HitId';
 import { HitRepository } from '../../../../src/Hits/domain/HitRepository';
 import { HitmanId } from '../../../../src/Hitmen/domain/HitmanId';
-import { HitStatus } from '../../../../src/Hits/domain/HitStatus';
+import { HitStatus, HitStatusEnum } from '../../../../src/Hits/domain/HitStatus';
 import { Hit } from '../../../../src/Hits/domain/Hit';
 import { HitmanRepository } from '../../../../src/Hitmen/domain/HitmanRepository';
 
@@ -31,7 +31,7 @@ export class HitCreator {
       hitmanAssignedTo.id,
       description,
       target,
-      new HitStatus(status, HitStatus.VALID_STATUS),
+      new HitStatus(status, Object.values(HitStatusEnum)),
       new HitmanId(createdBy),
     );
     await this.repository.save(hit);

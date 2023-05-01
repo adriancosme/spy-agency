@@ -32,7 +32,7 @@ export class HitRepositoryMock implements HitRepository {
     return this.hits;
   }
 
-  assertSearchAllHasBeenCalled() {
+  assertSearchAll() {
     expect(this.searchAllMock).toHaveBeenCalled();
   }
 

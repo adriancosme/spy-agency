@@ -9,7 +9,12 @@ import {
   HitmanPassword,
   HitmanStatus,
 } from '../../../../src/Hitmen/domain';
-import { Hit, HitId, HitStatus } from '../../../../src/Hits/domain';
+import {
+  Hit,
+  HitId,
+  HitStatus,
+  HitStatusEnum,
+} from '../../../../src/Hits/domain';
 
 describe('MarkAsCompleted', () => {
   let hitRepository: HitRepositoryMock;
@@ -53,7 +58,7 @@ describe('MarkAsCompleted', () => {
       hitmanAssignedTo.id,
       'Lorem ipsum',
       'Juan Perez',
-      new HitStatus(HitStatus.ASSIGNED.value, HitStatus.VALID_STATUS),
+      new HitStatus(HitStatus.ASSIGNED.value, Object.values(HitStatusEnum)),
       hitmanCreatedBy.id,
     );
   });
@@ -88,7 +93,7 @@ describe('MarkAsCompleted', () => {
       hitmanAssignedTo.id,
       'Lorem ipsum',
       'Juan Perez',
-      new HitStatus(HitStatus.COMPLETED.value, HitStatus.VALID_STATUS),
+      new HitStatus(HitStatus.COMPLETED.value, Object.values(HitStatusEnum)),
       hitmanCreatedBy.id,
     );
     hitmanRepository.returnSearchById(hitmanActivePerformAction);

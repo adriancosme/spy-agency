@@ -1,12 +1,23 @@
+import { InvalidArgumentError } from '../../Shared/domain/value-object/InvalidArgumentError';
 import { EnumValueObject } from '../../Shared/domain/value-object/EnumValueObject';
-
+export enum HitStatusEnum {
+  NOT_ASSIGNED = 'NOT_ASSIGNED',
+  ASSIGNED = 'ASSIGNED',
+  FAILED = 'FAILED',
+  COMPLETED = 'COMPLETED',
+}
 export class HitStatus extends EnumValueObject<string> {
-  static VALID_STATUS: string[] = ['ASSIGNED', 'FAILED', 'COMPLETED'];
-  static readonly ASSIGNED = new HitStatus('ASSIGNED', HitStatus.VALID_STATUS);
-  static readonly FAILED = new HitStatus('FAILED', HitStatus.VALID_STATUS);
+  static readonly ASSIGNED = new HitStatus(
+    'ASSIGNED',
+    Object.values(HitStatusEnum),
+  );
+  static readonly FAILED = new HitStatus(
+    'FAILED',
+    Object.values(HitStatusEnum),
+  );
   static readonly COMPLETED = new HitStatus(
     'COMPLETED',
-    HitStatus.VALID_STATUS,
+    Object.values(HitStatusEnum),
   );
 
   constructor(value: string, validValues: string[]) {
@@ -14,6 +25,6 @@ export class HitStatus extends EnumValueObject<string> {
   }
 
   protected throwErrorForInvalidValue(value: string): void {
-    throw new Error(`Invalid user status value: ${value}`);
+    throw new InvalidArgumentError(`Invalid user status value: ${value}`);
   }
 }

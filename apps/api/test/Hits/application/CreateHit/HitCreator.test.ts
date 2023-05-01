@@ -4,7 +4,10 @@ import { HitmanId } from '../../../../src/Hitmen/domain/HitmanId';
 import { HitCreator } from '../../../../src/Hits/application/CreateHit/HitCreator';
 import { Hit } from '../../../../src/Hits/domain/Hit';
 import { HitId } from '../../../../src/Hits/domain/HitId';
-import { HitStatus } from '../../../../src/Hits/domain/HitStatus';
+import {
+  HitStatus,
+  HitStatusEnum,
+} from '../../../../src/Hits/domain/HitStatus';
 import { HitmanRepositoryMock } from '../../../../test/Hitmen/__mocks__/HitmanRepositoryMock';
 import { Hitman } from '../../../../src/Hitmen/domain/Hitman';
 import { HitmanEmail } from '../../../../src/Hitmen/domain/HitmanEmail';
@@ -34,7 +37,7 @@ describe('HitCreator', () => {
       hitmanAssignedTo.id,
       'Lorem ipsum',
       'Juan Perez',
-      new HitStatus(HitStatus.ASSIGNED.value, HitStatus.VALID_STATUS),
+      new HitStatus(HitStatus.ASSIGNED.value, Object.values(HitStatusEnum)),
       new HitmanId(1),
     );
     const creator = new HitCreator(repository, hitmanRepository);
@@ -64,7 +67,7 @@ describe('HitCreator', () => {
       hitmanAssignedTo.id,
       'Lorem ipsum',
       'Juan Perez',
-      new HitStatus(HitStatus.ASSIGNED.value, HitStatus.VALID_STATUS),
+      new HitStatus(HitStatus.ASSIGNED.value, Object.values(HitStatusEnum)),
       new HitmanId(1),
     );
     const creator = new HitCreator(repository, hitmanRepository);
@@ -85,7 +88,7 @@ describe('HitCreator', () => {
       new HitmanId(3),
       'Lorem ipsum',
       'Juan Perez',
-      new HitStatus(HitStatus.ASSIGNED.value, HitStatus.VALID_STATUS),
+      new HitStatus(HitStatus.ASSIGNED.value, Object.values(HitStatusEnum)),
       new HitmanId(1),
     );
     hitmanRepository.returnSearchById(null);
