@@ -8,6 +8,7 @@ import {
 } from '../../../../../src/Contexts/Hitmen/domain';
 import { CryptoService } from '../../../../../src/Contexts/Shared/infrastructure/crypto.service';
 import { HitmanRepositoryMock } from '../../__mocks__/HitmanRepositoryMock';
+import {HitmanRoleMother} from "../../domain/HitmanRoleMother";
 
 describe('HitmanCreator', () => {
   const invalidEmail = 'fake@email';
@@ -22,6 +23,7 @@ describe('HitmanCreator', () => {
         new HitmanEmail(validEmail),
         new HitmanPassword(validPassword),
         HitmanStatus.ACTIVE,
+        HitmanRoleMother.random()
       );
 
       const repository = new HitmanRepositoryMock();
@@ -33,6 +35,7 @@ describe('HitmanCreator', () => {
         hitman.email.value,
         hitman.password.value,
         hitman.status.value,
+        hitman.role.value
       );
       repository.assertSaveHaveBeenCalledWith(hitman);
     } catch (error) {
@@ -47,6 +50,7 @@ describe('HitmanCreator', () => {
         new HitmanEmail(invalidEmail),
         new HitmanPassword(validPassword),
         HitmanStatus.ACTIVE,
+        HitmanRoleMother.random()
       );
 
       const repository = new HitmanRepositoryMock();
@@ -58,6 +62,7 @@ describe('HitmanCreator', () => {
         hitman.email.value,
         hitman.password.value,
         hitman.status.value,
+        hitman.role.value
       );
       expect(true).toBeFalsy();
     } catch (error) {
@@ -75,6 +80,7 @@ describe('HitmanCreator', () => {
         new HitmanEmail(''),
         new HitmanPassword(validPassword),
         HitmanStatus.ACTIVE,
+        HitmanRoleMother.random()
       );
 
       const repository = new HitmanRepositoryMock();
@@ -86,6 +92,7 @@ describe('HitmanCreator', () => {
         hitman.email.value,
         hitman.password.value,
         hitman.status.value,
+        hitman.role.value
       );
       expect(true).toBeFalsy();
     } catch (error) {
@@ -100,6 +107,7 @@ describe('HitmanCreator', () => {
         new HitmanEmail(validEmail),
         new HitmanPassword(''),
         HitmanStatus.ACTIVE,
+        HitmanRoleMother.random()
       );
       const repository = new HitmanRepositoryMock();
       const crypto = new CryptoService();
@@ -110,6 +118,7 @@ describe('HitmanCreator', () => {
         hitman.email.value,
         hitman.password.value,
         hitman.status.value,
+        hitman.role.value
       );
       expect(true).toBeFalsy();
     } catch (error) {
@@ -124,6 +133,7 @@ describe('HitmanCreator', () => {
         new HitmanEmail(validEmail),
         new HitmanPassword(invalidPassword),
         HitmanStatus.ACTIVE,
+        HitmanRoleMother.random()
       );
       const repository = new HitmanRepositoryMock();
       const crypto = new CryptoService();
@@ -134,6 +144,7 @@ describe('HitmanCreator', () => {
         hitman.email.value,
         hitman.password.value,
         hitman.status.value,
+        hitman.role.value
       );
       expect(true).toBeFalsy();
     } catch (error) {

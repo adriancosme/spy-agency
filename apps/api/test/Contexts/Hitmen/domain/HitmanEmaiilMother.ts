@@ -1,7 +1,8 @@
 import { MotherCreator } from '../../Shared/domain/MotherCreator';
+import {HitmanEmail} from "../../../../src/Contexts/Hitmen/domain";
 
 export class HitmanEmailMother {
-  static random(): string {
-    return MotherCreator.random().internet.email();
+  static random(): HitmanEmail {
+    return new HitmanEmail(MotherCreator.random().internet.email());
   }
 }

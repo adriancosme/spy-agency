@@ -6,10 +6,11 @@ import {
   HitmanStatus,
 } from '../../domain';
 import { InvalidArgumentError } from '../../../Shared/domain/value-object/InvalidArgumentError';
+import {HitmanRole, HitmanRoleEnum} from "../../domain/HitmanRole";
 
 export class HitmanUpdater {
   constructor(private repository: HitmanRepository) {}
-  async run(id: number, name: string, email: string, status: string) {
+  async run(id: number, name: string, email: string, status: string, role: string) {
     const hitman = await this.repository.searchById(id);
     if (!hitman) {
       throw new InvalidArgumentError('Hitman does not exist');
@@ -28,6 +29,7 @@ export class HitmanUpdater {
       new HitmanEmail(email),
       hitman.password,
       new HitmanStatus(status, Object.values(HitmanStatusEnum)),
+      new HitmanRole(role, Object.values(HitmanRoleEnum))
     );
     return await this.repository.update(newHitman);
   }

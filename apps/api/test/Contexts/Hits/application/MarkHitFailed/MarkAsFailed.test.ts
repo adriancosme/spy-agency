@@ -10,6 +10,7 @@ import {
 import { HitRepositoryMock } from '../../__mocks__/HitRepositoryMock';
 import { MarkAsFailed } from '../../../../../src/Contexts/Hits/application/MarkAsFailed/MarkAsFailed';
 import { HitmanRepositoryMock } from '../../../Hitmen/__mocks__/HitmanRepositoryMock';
+import {HitmanRoleMother} from "../../../Hitmen/domain/HitmanRoleMother";
 
 describe('MarkAsFailed', () => {
   let repository: HitRepositoryMock;
@@ -20,6 +21,7 @@ describe('MarkAsFailed', () => {
     new HitmanEmail('joe@spy.com'),
     new HitmanPassword('ASDx2asfSAF'),
     HitmanStatus.INACTIVE,
+    HitmanRoleMother.random()
   );
   const hitmanActivePerformAction = new Hitman(
     new HitmanId(2),
@@ -27,6 +29,7 @@ describe('MarkAsFailed', () => {
     new HitmanEmail('joe@spy.com'),
     new HitmanPassword('ASDx2asfSAF'),
     HitmanStatus.ACTIVE,
+    HitmanRoleMother.random()
   );
   beforeEach(() => {
     repository = new HitRepositoryMock();

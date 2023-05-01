@@ -8,6 +8,7 @@ import {
   HitmanStatus,
 } from '../../../../../src/Contexts/Hitmen/domain';
 import { HitmanRepositoryMock } from '../../__mocks__/HitmanRepositoryMock';
+import {HitmanRoleMother} from "../../domain/HitmanRoleMother";
 
 describe('HitmanUpdater', () => {
   const invalidEmail = 'fake@email';
@@ -25,6 +26,7 @@ describe('HitmanUpdater', () => {
       new HitmanEmail(validEmail),
       new HitmanPassword(validPassword),
       new HitmanStatus('ACTIVE', Object.values(HitmanStatusEnum)),
+      HitmanRoleMother.random()
     );
     repository.returnSearchById(hitman);
     const updater = new HitmanUpdater(repository);
@@ -33,6 +35,7 @@ describe('HitmanUpdater', () => {
       hitman.name,
       hitman.email.value,
       hitman.status.value,
+      hitman.role.value
     );
     repository.assertUpdateHaveBeenCalledWith(hitman);
   });
@@ -43,6 +46,7 @@ describe('HitmanUpdater', () => {
       new HitmanEmail(validEmail),
       new HitmanPassword(validPassword),
       new HitmanStatus('INACTIVE', Object.values(HitmanStatusEnum)),
+      HitmanRoleMother.random()
     );
     repository.returnSearchById(hitman);
     const updater = new HitmanUpdater(repository);
@@ -52,6 +56,7 @@ describe('HitmanUpdater', () => {
         hitman.name,
         hitman.email.value,
         HitmanStatus.ACTIVE.value,
+        hitman.role.value
       ),
     ).rejects.toThrowError('Hitman can not be changed from INACTIVE to ACTIVE');
   });
@@ -62,6 +67,7 @@ describe('HitmanUpdater', () => {
       new HitmanEmail(validEmail),
       new HitmanPassword(validPassword),
       new HitmanStatus('ACTIVE', Object.values(HitmanStatusEnum)),
+      HitmanRoleMother.random()
     );
     repository.returnSearchById(null);
     const updater = new HitmanUpdater(repository);
@@ -71,6 +77,7 @@ describe('HitmanUpdater', () => {
         hitman.name,
         hitman.email.value,
         hitman.status.value,
+        hitman.role.value
       ),
     ).rejects.toThrowError('Hitman does not exist');
   });
@@ -81,6 +88,7 @@ describe('HitmanUpdater', () => {
       new HitmanEmail(validEmail),
       new HitmanPassword(validPassword),
       new HitmanStatus('ACTIVE', Object.values(HitmanStatusEnum)),
+      HitmanRoleMother.random()
     );
     repository.returnSearchById(hitman);
     const updater = new HitmanUpdater(repository);
@@ -90,6 +98,7 @@ describe('HitmanUpdater', () => {
         hitman.name,
         invalidEmail,
         hitman.status.value,
+        hitman.role.value
       ),
     ).rejects.toThrowError(`Email <${invalidEmail}> is not valid`);
   });

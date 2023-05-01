@@ -1,5 +1,5 @@
-import { AggregateRoot } from 'src/Contexts/Shared/domain/AggregateRoot';
 import { HitmanId } from './HitmanId';
+import {AggregateRoot} from "../../Shared/domain/AggregateRoot";
 
 export class HitmanManager extends AggregateRoot {
   readonly hitmanId: HitmanId;

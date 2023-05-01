@@ -3,6 +3,7 @@ import { HitmanEmail } from './HitmanEmail';
 import { HitmanId } from './HitmanId';
 import { HitmanPassword } from './HitmanPassword';
 import { HitmanStatus, HitmanStatusEnum } from './HitmanStatus';
+import {HitmanRole, HitmanRoleEnum} from "./HitmanRole";
 
 export class Hitman extends AggregateRoot {
   readonly id: HitmanId;
@@ -10,6 +11,7 @@ export class Hitman extends AggregateRoot {
   readonly email: HitmanEmail;
   readonly password: HitmanPassword;
   readonly status: HitmanStatus;
+  readonly role: HitmanRole;
 
   constructor(
     id: HitmanId,
@@ -17,6 +19,7 @@ export class Hitman extends AggregateRoot {
     email: HitmanEmail,
     password: HitmanPassword,
     status: HitmanStatus,
+    role: HitmanRole
   ) {
     super();
     this.id = id;
@@ -24,6 +27,7 @@ export class Hitman extends AggregateRoot {
     this.email = email;
     this.password = password;
     this.status = status;
+    this.role = role;
   }
 
   static create(
@@ -32,6 +36,7 @@ export class Hitman extends AggregateRoot {
     email: string,
     password: string,
     status: string,
+    role: string,
   ) {
     return new Hitman(
       new HitmanId(id),
@@ -39,6 +44,7 @@ export class Hitman extends AggregateRoot {
       new HitmanEmail(email),
       new HitmanPassword(password),
       new HitmanStatus(status, Object.values(HitmanStatusEnum)),
+      new HitmanRole(role, Object.values(HitmanStatusEnum))
     );
   }
 
@@ -48,13 +54,15 @@ export class Hitman extends AggregateRoot {
     email: string;
     password: string;
     status: string;
+    role: string;
   }): Hitman {
     return new Hitman(
       new HitmanId(plainData.id),
       plainData.name,
       new HitmanEmail(plainData.email),
       new HitmanPassword(plainData.password),
-      new HitmanStatus(plainData.status, ['ACTIVE', 'INACTIVE']),
+      new HitmanStatus(plainData.status, Object.values(HitmanStatusEnum)),
+      new HitmanRole(plainData.role, Object.values(HitmanRoleEnum))
     );
   }
 
@@ -65,6 +73,7 @@ export class Hitman extends AggregateRoot {
       email: this.email.value,
       password: this.password.value,
       status: this.status.value,
+      role: this.role.value
     };
   }
 

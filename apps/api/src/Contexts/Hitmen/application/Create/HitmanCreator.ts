@@ -13,13 +13,14 @@ export class HitmanCreator {
     email: string,
     password: string,
     status: string,
+    role: string
   ) {
     const plainPassword = new HitmanPassword(password);
     if (!plainPassword.isValidPassword()) {
       throw new Error('Password dont contain at least 8 characters');
     }
     const passwordHash = await this.hasher.hashPassword(plainPassword.value);
-    const hitman = Hitman.create(id, name, email, passwordHash, status);
-    this.repository.save(hitman);
+    const hitman = Hitman.create(id, name, email, passwordHash, status, role);
+    await this.repository.save(hitman);
   }
 }

@@ -8,6 +8,7 @@ import {
 import { HitmanRepositoryMock } from '../../__mocks__/HitmanRepositoryMock';
 import { HitmanRetired } from '../../../../../src/Contexts/Hitmen/application/MaskHitmanAsRetired/HitmanRetired';
 import { faker } from '@faker-js/faker';
+import {HitmanRoleMother} from "../../domain/HitmanRoleMother";
 
 describe('HitmanRetired', () => {
   let repository: HitmanRepositoryMock;
@@ -21,6 +22,7 @@ describe('HitmanRetired', () => {
       new HitmanEmail(faker.internet.email()),
       new HitmanPassword('12fassajkl21DSA'),
       HitmanStatus.ACTIVE,
+      HitmanRoleMother.random()
     );
     const hitmanUpdated = new Hitman(
       hitman.id,
@@ -28,6 +30,7 @@ describe('HitmanRetired', () => {
       hitman.email,
       hitman.password,
       HitmanStatus.INACTIVE,
+      hitman.role
     );
     repository.returnSearchById(hitman);
     const updater = new HitmanRetired(repository);
@@ -42,6 +45,7 @@ describe('HitmanRetired', () => {
         new HitmanEmail(faker.internet.email()),
         new HitmanPassword('12fassajkl21DSA'),
         HitmanStatus.ACTIVE,
+        HitmanRoleMother.random()
       );
       const updater = new HitmanRetired(repository);
       await updater.run(hitman.id.value);

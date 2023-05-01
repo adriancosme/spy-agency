@@ -16,6 +16,7 @@ import {
 import { Cuid } from '../../../../../src/Contexts/Shared/domain/value-object/Cuid';
 import { HitmanRepositoryMock } from '../../../Hitmen/__mocks__/HitmanRepositoryMock';
 import { HitRepositoryMock } from '../../__mocks__/HitRepositoryMock';
+import {HitmanRoleMother} from "../../../Hitmen/domain/HitmanRoleMother";
 
 describe('MarkAsCompleted', () => {
   let hitRepository: HitRepositoryMock;
@@ -27,6 +28,7 @@ describe('MarkAsCompleted', () => {
     new HitmanEmail('joe@spy.com'),
     new HitmanPassword('ASDx2asfSAF'),
     HitmanStatus.INACTIVE,
+    HitmanRoleMother.random()
   );
   const hitmanActivePerformAction = new Hitman(
     new HitmanId(2),
@@ -34,6 +36,7 @@ describe('MarkAsCompleted', () => {
     new HitmanEmail('joe@spy.com'),
     new HitmanPassword('ASDx2asfSAF'),
     HitmanStatus.ACTIVE,
+    HitmanRoleMother.random()
   );
 
   let hitAssignedExample: Hit;

@@ -14,6 +14,7 @@ export class HitmanRetired {
       hitman.email,
       hitman.password,
       HitmanStatus.INACTIVE,
+      hitman.role
     );
     await this.repository.update(newHitman);
   }

@@ -16,6 +16,7 @@ import {
   HitmanEmail,
   HitmanPassword,
 } from '../../../../../src/Contexts/Hitmen/domain';
+import {HitmanRoleMother} from "../../../Hitmen/domain/HitmanRoleMother";
 
 describe('HitCreator', () => {
   let repository: HitRepositoryMock;
@@ -35,6 +36,7 @@ describe('HitCreator', () => {
         HitmanStatus.ACTIVE.value,
         Object.values(HitmanStatusEnum),
       ),
+      HitmanRoleMother.random()
     );
     hitmanRepository.returnSearchById(hitmanAssignedTo);
 
@@ -69,6 +71,7 @@ describe('HitCreator', () => {
         HitmanStatus.INACTIVE.value,
         Object.values(HitmanStatusEnum),
       ),
+      HitmanRoleMother.random()
     );
     hitmanRepository.returnSearchById(hitmanAssignedTo);
     const hit = new Hit(
