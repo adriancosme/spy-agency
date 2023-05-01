@@ -1,4 +1,7 @@
-import { Hitman, HitmanRepository } from '../../../../src/Contexts/Hitmen/domain';
+import {
+  Hitman,
+  HitmanRepository,
+} from '../../../../src/Contexts/Hitmen/domain';
 
 export class HitmanRepositoryMock implements HitmanRepository {
   private saveMock: jest.Mock = jest.fn();
