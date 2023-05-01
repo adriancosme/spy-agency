@@ -1,6 +1,6 @@
 import {HitmanManagerRepository} from "../domain/HitmanManagerRepository";
 import {HitmanManager} from "../domain/HitmanManager";
-import {HitmanRepository} from "../domain";
+import {HitmanId, HitmanRepository} from "../domain";
 import {HitmanRole} from "../domain/HitmanRole";
 
 export class AssignHitmanToManagerHandler {
@@ -31,8 +31,8 @@ export class AssignHitmanToManagerHandler {
     }
 
     const hitmanManager = new HitmanManager(
-      hitman.id,
-      manager.id
+      new HitmanId(hitmanId),
+      new HitmanId(managerId)
     )
     await this.repository.save(hitmanManager)
   }
