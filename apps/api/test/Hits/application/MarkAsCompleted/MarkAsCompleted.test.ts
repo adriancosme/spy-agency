@@ -1,7 +1,4 @@
-import { HitmanRepositoryMock } from '../../../Hitmen/__mocks__/HitmanRepositoryMock';
-import { HitRepositoryMock } from '../../__mocks__/HitRepositoryMock';
-import { Cuid } from '../../../../src/Shared/domain/value-object/Cuid';
-import { MarkAsCompleted } from '../../../../src/Hits/application/MarkAsCompleted/MarkAsCompleted';
+import { HitmanMother } from '../../../../test/Hitmen/domain/HitmanMother';
 import {
   Hitman,
   HitmanEmail,
@@ -9,30 +6,20 @@ import {
   HitmanPassword,
   HitmanStatus,
 } from '../../../../src/Hitmen/domain';
+import { MarkAsCompleted } from '../../../../src/Hits/application/MarkAsCompleted/MarkAsCompleted';
 import {
   Hit,
   HitId,
   HitStatus,
   HitStatusEnum,
 } from '../../../../src/Hits/domain';
+import { Cuid } from '../../../../src/Shared/domain/value-object/Cuid';
+import { HitmanRepositoryMock } from '../../../Hitmen/__mocks__/HitmanRepositoryMock';
+import { HitRepositoryMock } from '../../__mocks__/HitRepositoryMock';
 
 describe('MarkAsCompleted', () => {
   let hitRepository: HitRepositoryMock;
   let hitmanRepository: HitmanRepositoryMock;
-  const hitmanAssignedTo = Hitman.create(
-    new HitmanId(3),
-    'John',
-    new HitmanEmail('john@spy.com'),
-    new HitmanPassword('asfA2FXVsa32XX'),
-    HitmanStatus.ACTIVE,
-  );
-  const hitmanCreatedBy = Hitman.create(
-    new HitmanId(2),
-    'Peter',
-    new HitmanEmail('peter@spy.com'),
-    new HitmanPassword('asfA2FXVsa32XX'),
-    HitmanStatus.ACTIVE,
-  );
 
   const hitmanInactivePerformAction = new Hitman(
     new HitmanId(2),
@@ -53,6 +40,8 @@ describe('MarkAsCompleted', () => {
   beforeEach(() => {
     hitRepository = new HitRepositoryMock();
     hitmanRepository = new HitmanRepositoryMock();
+    const hitmanAssignedTo = HitmanMother.random();
+    const hitmanCreatedBy = HitmanMother.random();
     hitAssignedExample = new Hit(
       new HitId(Cuid.random().value),
       hitmanAssignedTo.id,
@@ -88,6 +77,8 @@ describe('MarkAsCompleted', () => {
     ).rejects.toThrowError('Hit not found');
   });
   it('should throw an error if the hit is already completed', async () => {
+    const hitmanAssignedTo = HitmanMother.random();
+    const hitmanCreatedBy = HitmanMother.random();
     const hit = new Hit(
       new HitId(Cuid.random().value),
       hitmanAssignedTo.id,
