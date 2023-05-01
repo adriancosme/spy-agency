@@ -1,4 +1,4 @@
-import { CryptoServiceRepository } from 'src/Shared/domain/CryptoServiceRepository';
+import { CryptoServiceRepository } from '../../Shared/domain/CryptoServiceRepository';
 import { AuthEmail } from '../domain/AuthEmail';
 import { AuthPassword } from '../domain/AuthPassword';
 import { AuthRepository } from '../domain/AuthRepository';

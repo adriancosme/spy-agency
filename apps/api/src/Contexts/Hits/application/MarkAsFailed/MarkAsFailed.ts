@@ -1,4 +1,4 @@
-import { HitmanRepository } from 'src/Hitmen/domain';
+import { HitmanRepository } from 'src/Contexts/Hitmen/domain';
 import { Hit, HitRepository, HitStatus } from '../../domain';
 
 export class MarkAsFailed {

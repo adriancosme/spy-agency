@@ -1,4 +1,4 @@
-import { HitmanStatus, HitmanStatusEnum } from '../../../src/Hitmen/domain';
+import { HitmanStatus, HitmanStatusEnum } from '../../../src/Contexts/Hitmen/domain';
 
 export class HitmanStatusMother {
   static create(value: string): HitmanStatus {

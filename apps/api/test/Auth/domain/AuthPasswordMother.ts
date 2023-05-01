@@ -1,4 +1,4 @@
-import { AuthPassword } from '../../../src/Auth/domain/AuthPassword';
+import { AuthPassword } from '../../../src/Contexts/Auth/domain/AuthPassword';
 import { MotherCreator } from '../../../test/Shared/domain/MotherCreator';
 
 export class AuthPasswordMother {

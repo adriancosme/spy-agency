@@ -1,6 +1,6 @@
-import { AuthEmail } from '../../../src/Auth/domain/AuthEmail';
-import { AuthRepository } from '../../../src/Auth/domain/AuthRepository';
-import { AuthUser } from '../../../src/Auth/domain/AuthUser';
+import { AuthEmail } from '../../../src/Contexts/Auth/domain/AuthEmail';
+import { AuthRepository } from '../../../src/Contexts/Auth/domain/AuthRepository';
+import { AuthUser } from '../../../src/Contexts/Auth/domain/AuthUser';
 
 export class AuthRepositoryMock implements AuthRepository {
   private searchMock = jest.fn();

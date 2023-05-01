@@ -1,6 +1,6 @@
-import { AuthUser } from '../../../src/Auth/domain/AuthUser';
-import { AuthEmail } from '../../../src/Auth/domain/AuthEmail';
-import { AuthPassword } from '../../../src/Auth/domain/AuthPassword';
+import { AuthUser } from '../../../src/Contexts/Auth/domain/AuthUser';
+import { AuthEmail } from '../../../src/Contexts/Auth/domain/AuthEmail';
+import { AuthPassword } from '../../../src/Contexts/Auth/domain/AuthPassword';
 import { AuthPasswordMother } from './AuthPasswordMother';
 import { AuthEmailMother } from './AuthEmailMother';
 

@@ -1,5 +1,5 @@
 import { CuidMother } from '../../../test/Shared/domain/CuidMother';
-import { HitId } from '../../../src/Hits/domain';
+import { HitId } from '../../../src/Contexts/Hits/domain';
 
 export class HitIdMother {
   static create(value: string): HitId {

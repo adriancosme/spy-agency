@@ -1,21 +1,21 @@
-import { Cuid } from '../../../../src/Shared/domain/value-object/Cuid';
+import { Cuid } from '../../../../src/Contexts/Shared/domain/value-object/Cuid';
 import { HitRepositoryMock } from '../../../../test/Hits/__mocks__/HitRepositoryMock';
-import { HitmanId } from '../../../../src/Hitmen/domain/HitmanId';
-import { HitCreator } from '../../../../src/Hits/application/CreateHit/HitCreator';
-import { Hit } from '../../../../src/Hits/domain/Hit';
-import { HitId } from '../../../../src/Hits/domain/HitId';
+import { HitmanId } from '../../../../src/Contexts/Hitmen/domain/HitmanId';
+import { HitCreator } from '../../../../src/Contexts/Hits/application/CreateHit/HitCreator';
+import { Hit } from '../../../../src/Contexts/Hits/domain/Hit';
+import { HitId } from '../../../../src/Contexts/Hits/domain/HitId';
 import {
   HitStatus,
   HitStatusEnum,
-} from '../../../../src/Hits/domain/HitStatus';
+} from '../../../../src/Contexts/Hits/domain/HitStatus';
 import { HitmanRepositoryMock } from '../../../../test/Hitmen/__mocks__/HitmanRepositoryMock';
-import { Hitman } from '../../../../src/Hitmen/domain/Hitman';
-import { HitmanEmail } from '../../../../src/Hitmen/domain/HitmanEmail';
+import { Hitman } from '../../../../src/Contexts/Hitmen/domain/Hitman';
+import { HitmanEmail } from '../../../../src/Contexts/Hitmen/domain/HitmanEmail';
 import {
   HitmanStatus,
   HitmanStatusEnum,
-} from '../../../../src/Hitmen/domain/HitmanStatus';
-import { HitmanPassword } from '../../../../src/Hitmen/domain/HitmanPassword';
+} from '../../../../src/Contexts/Hitmen/domain/HitmanStatus';
+import { HitmanPassword } from '../../../../src/Contexts/Hitmen/domain/HitmanPassword';
 
 describe('HitCreator', () => {
   let repository: HitRepositoryMock;

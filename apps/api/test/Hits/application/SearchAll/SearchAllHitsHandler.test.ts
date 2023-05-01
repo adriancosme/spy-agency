@@ -1,8 +1,8 @@
 import { HitMother } from '../../../../test/Hits/domain/HitMother';
 import { HitRepositoryMock } from '../../../../test/Hits/__mocks__/HitRepositoryMock';
-import { SearchAllHitsQueryHandler } from '../../../../src/Hits/application/SearchAll/SearchAllHitsQueryHandler';
-import { HitsFinder } from '../../../../src/Hits/application/SearchAll/HitsFinder';
-import { SearchAllHitsQuery } from '../../../../src/Hits/application/SearchAll/SearchAllHitsQuery';
+import { SearchAllHitsQueryHandler } from '../../../../src/Contexts/Hits/application/SearchAll/SearchAllHitsQueryHandler';
+import { HitsFinder } from '../../../../src/Contexts/Hits/application/SearchAll/HitsFinder';
+import { SearchAllHitsQuery } from '../../../../src/Contexts/Hits/application/SearchAll/SearchAllHitsQuery';
 import { SearchAllHitsResponseMother } from '../../../../test/Hits/domain/SearchAllHitsResponseMother';
 
 describe('SearchAllHits QueryHandler', () => {

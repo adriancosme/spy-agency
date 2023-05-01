@@ -1,4 +1,4 @@
-import { AggregateRoot } from '../../../src/Shared/domain/AggregateRoot';
+import { AggregateRoot } from '../../Shared/domain/AggregateRoot';
 import { AuthEmail } from './AuthEmail';
 import { AuthPassword } from './AuthPassword';
 

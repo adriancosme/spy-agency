@@ -1,5 +1,5 @@
 import { Filters } from '../../../Shared/domain/criteria/Filters';
-import { HitRepository } from '../../../Hits/domain';
+import { HitRepository } from '../../domain';
 import { HitsResponse } from '../HitsResponse';
 import { Criteria } from '../../../Shared/domain/criteria/Criteria';
 import { Order } from '../../../Shared/domain/criteria/Order';

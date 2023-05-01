@@ -1,12 +1,12 @@
-import { HitmanUpdater } from '../../../../src/Hitmen/application/Update/HitmanUpdater';
-import { Hitman } from '../../../../src/Hitmen/domain/Hitman';
-import { HitmanEmail } from '../../../../src/Hitmen/domain/HitmanEmail';
-import { HitmanId } from '../../../../src/Hitmen/domain/HitmanId';
-import { HitmanPassword } from '../../../../src/Hitmen/domain/HitmanPassword';
+import { HitmanUpdater } from '../../../../src/Contexts/Hitmen/application/Update/HitmanUpdater';
+import { Hitman } from '../../../../src/Contexts/Hitmen/domain/Hitman';
+import { HitmanEmail } from '../../../../src/Contexts/Hitmen/domain/HitmanEmail';
+import { HitmanId } from '../../../../src/Contexts/Hitmen/domain/HitmanId';
+import { HitmanPassword } from '../../../../src/Contexts/Hitmen/domain/HitmanPassword';
 import {
   HitmanStatus,
   HitmanStatusEnum,
-} from '../../../../src/Hitmen/domain/HitmanStatus';
+} from '../../../../src/Contexts/Hitmen/domain/HitmanStatus';
 import { HitmanRepositoryMock } from '../../../../test/Hitmen/__mocks__/HitmanRepositoryMock';
 
 describe('HitmanUpdater', () => {

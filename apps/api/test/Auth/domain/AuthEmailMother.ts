@@ -1,4 +1,4 @@
-import { AuthEmail } from '../../../src/Auth/domain/AuthEmail';
+import { AuthEmail } from '../../../src/Contexts/Auth/domain/AuthEmail';
 import { MotherCreator } from '../../../test/Shared/domain/MotherCreator';
 
 export class AuthEmailMother {

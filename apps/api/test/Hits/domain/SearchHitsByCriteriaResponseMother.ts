@@ -1,5 +1,5 @@
-import { HitsResponse } from '../../../src/Hits/application/HitsResponse';
-import { Hit } from '../../../src/Hits/domain';
+import { HitsResponse } from '../../../src/Contexts/Hits/application/HitsResponse';
+import { Hit } from '../../../src/Contexts/Hits/domain';
 
 export class SearchHitsByCriteriaResponseMother {
   static create(hits: Array<Hit>) {

@@ -1,5 +1,5 @@
-import { HitmanId } from '../../../src/Hitmen/domain';
-import { Hit, HitId, HitStatus } from '../../../src/Hits/domain';
+import { HitmanId } from '../../../src/Contexts/Hitmen/domain';
+import { Hit, HitId, HitStatus } from '../../../src/Contexts/Hits/domain';
 import { HitIdMother } from './HitIdMother';
 import { HitAssigedToMother } from './HitAssigedToMother';
 import { HitDescriptionMother } from './HitDescriptionMother';

@@ -5,15 +5,15 @@ import {
   HitmanId,
   HitmanPassword,
   HitmanStatus,
-} from '../../../../src/Hitmen/domain';
-import { MarkAsCompleted } from '../../../../src/Hits/application/MarkAsCompleted/MarkAsCompleted';
+} from '../../../../src/Contexts/Hitmen/domain';
+import { MarkAsCompleted } from '../../../../src/Contexts/Hits/application/MarkAsCompleted/MarkAsCompleted';
 import {
   Hit,
   HitId,
   HitStatus,
   HitStatusEnum,
-} from '../../../../src/Hits/domain';
-import { Cuid } from '../../../../src/Shared/domain/value-object/Cuid';
+} from '../../../../src/Contexts/Hits/domain';
+import { Cuid } from '../../../../src/Contexts/Shared/domain/value-object/Cuid';
 import { HitmanRepositoryMock } from '../../../Hitmen/__mocks__/HitmanRepositoryMock';
 import { HitRepositoryMock } from '../../__mocks__/HitRepositoryMock';
 

@@ -5,7 +5,7 @@ import {
   HitmanPassword,
   HitmanStatus,
   HitmanStatusEnum,
-} from '../../../src/Hitmen/domain';
+} from '../../../src/Contexts/Hitmen/domain';
 import { HitmanEmailMother } from './HitmanEmaiilMother';
 import { HitmanIdMother } from './HitmanIdMother';
 import { HitmanNameMother } from './HitmanNameMother';

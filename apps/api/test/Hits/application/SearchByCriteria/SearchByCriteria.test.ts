@@ -1,9 +1,9 @@
-import { OrderTypes } from '../../../../src/Shared/domain/criteria/OrderType';
-import { HitsByCriteriaSearcher } from '../../../../src/Hits/application/SearchByCriteria/HitsByCriteriaSearcher';
-import { SearchHitsByCriteriaQuery } from '../../../../src/Hits/application/SearchByCriteria/SearchHitsByCriteriaQuery';
-import { SearchHitsByCriteriaQueryHandler } from '../../../../src/Hits/application/SearchByCriteria/SearchHitsByCriteriaQueryHandler';
-import { HitStatus } from '../../../../src/Hits/domain';
-import { Operator } from '../../../../src/Shared/domain/criteria/FilterOperator';
+import { OrderTypes } from '../../../../src/Contexts/Shared/domain/criteria/OrderType';
+import { HitsByCriteriaSearcher } from '../../../../src/Contexts/Hits/application/SearchByCriteria/HitsByCriteriaSearcher';
+import { SearchHitsByCriteriaQuery } from '../../../../src/Contexts/Hits/application/SearchByCriteria/SearchHitsByCriteriaQuery';
+import { SearchHitsByCriteriaQueryHandler } from '../../../../src/Contexts/Hits/application/SearchByCriteria/SearchHitsByCriteriaQueryHandler';
+import { HitStatus } from '../../../../src/Contexts/Hits/domain';
+import { Operator } from '../../../../src/Contexts/Shared/domain/criteria/FilterOperator';
 import { HitRepositoryMock } from '../../../../test/Hits/__mocks__/HitRepositoryMock';
 import { HitMother } from '../../../../test/Hits/domain/HitMother';
 import { SearchHitsByCriteriaResponseMother } from '../../../../test/Hits/domain/SearchHitsByCriteriaResponseMother';

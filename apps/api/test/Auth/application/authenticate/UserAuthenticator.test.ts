@@ -1,7 +1,7 @@
-import { CryptoService } from '../../../../src/Shared/infrastructure/crypto.service';
-import { UserAuthenticator } from '../../../../src/Auth/application/UserAuthenticator';
+import { CryptoService } from '../../../../src/Contexts/Shared/infrastructure/crypto.service';
+import { UserAuthenticator } from '../../../../src/Contexts/Auth/application/UserAuthenticator';
 import { AuthRepositoryMock } from '../../__mocks__/AuthRepositoryMock';
-import { AuthUser } from '../../../../src/Auth/domain/AuthUser';
+import { AuthUser } from '../../../../src/Contexts/Auth/domain/AuthUser';
 import { AuthPasswordMother } from '../../../../test/Auth/domain/AuthPasswordMother';
 import { AuthEmailMother } from '../../../../test/Auth/domain/AuthEmailMother';
 import { AuthUserMother } from '../../../../test/Auth/domain/AuthUserMother';

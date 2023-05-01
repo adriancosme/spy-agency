@@ -1,14 +1,14 @@
-import { Cuid } from '../../../../src/Shared/domain/value-object/Cuid';
-import { Hit, HitId, HitStatus } from '../../../../src/Hits/domain';
+import { Cuid } from '../../../../src/Contexts/Shared/domain/value-object/Cuid';
+import { Hit, HitId, HitStatus } from '../../../../src/Contexts/Hits/domain';
 import {
   Hitman,
   HitmanEmail,
   HitmanId,
   HitmanPassword,
   HitmanStatus,
-} from '../../../../src/Hitmen/domain';
+} from '../../../../src/Contexts/Hitmen/domain';
 import { HitRepositoryMock } from '../../../../test/Hits/__mocks__/HitRepositoryMock';
-import { MarkAsFailed } from '../../../../src/Hits/application/MarkAsFailed/MarkAsFailed';
+import { MarkAsFailed } from '../../../../src/Contexts/Hits/application/MarkAsFailed/MarkAsFailed';
 import { HitmanRepositoryMock } from '../../../../test/Hitmen/__mocks__/HitmanRepositoryMock';
 
 describe('MarkAsFailed', () => {

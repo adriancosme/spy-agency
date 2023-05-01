@@ -1,6 +1,6 @@
-import { Hit } from 'src/Hits/domain/Hit';
-import { HitRepository } from '../../../src/Hits/domain/HitRepository';
-import { Criteria } from 'src/Shared/domain/criteria/Criteria';
+import { Hit } from 'src/Contexts/Hits/domain/Hit';
+import { HitRepository } from '../../../src/Contexts/Hits/domain/HitRepository';
+import { Criteria } from 'src/Contexts/Shared/domain/criteria/Criteria';
 
 export class HitRepositoryMock implements HitRepository {
   private saveMock = jest.fn();
