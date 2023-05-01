@@ -1,5 +1,5 @@
 import { HitmanId } from '../../../src/Contexts/Hitmen/domain';
-import { IntegerMother } from '../../../test/Shared/domain/IntegerMother';
+import { IntegerMother } from '../../Shared/domain/IntegerMother';
 
 export class HitAssigedToMother {
   static create(value: number): HitmanId {

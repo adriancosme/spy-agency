@@ -1,6 +1,4 @@
-import { Hitman } from '../../domain/Hitman';
-import { HitmanRepository } from '../../domain/HitmanRepository';
-import { HitmanStatus } from '../../domain/HitmanStatus';
+import { Hitman, HitmanRepository, HitmanStatus } from '../../domain';
 
 export class HitmanRetired {
   constructor(private repository: HitmanRepository) {}

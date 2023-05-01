@@ -7,9 +7,9 @@ import {
   HitmanPassword,
   HitmanStatus,
 } from '../../../../src/Contexts/Hitmen/domain';
-import { HitRepositoryMock } from '../../../../test/Hits/__mocks__/HitRepositoryMock';
+import { HitRepositoryMock } from '../../__mocks__/HitRepositoryMock';
 import { MarkAsFailed } from '../../../../src/Contexts/Hits/application/MarkAsFailed/MarkAsFailed';
-import { HitmanRepositoryMock } from '../../../../test/Hitmen/__mocks__/HitmanRepositoryMock';
+import { HitmanRepositoryMock } from '../../../Hitmen/__mocks__/HitmanRepositoryMock';
 
 describe('MarkAsFailed', () => {
   let repository: HitRepositoryMock;
@@ -42,7 +42,7 @@ describe('MarkAsFailed', () => {
       new HitmanId(2),
     );
     hitmanRepository.returnSearchById(hitmanActivePerformAction);
-    repository.returnSeachById(hit);
+    repository.returnSearchById(hit);
     const updater = new MarkAsFailed(repository, hitmanRepository);
     await updater.run(hit.id.value, hitmanActivePerformAction.id.value);
     const updatedHit = new Hit(
@@ -72,7 +72,7 @@ describe('MarkAsFailed', () => {
       new HitmanId(2),
     );
     hitmanRepository.returnSearchById(hitmanActivePerformAction);
-    repository.returnSeachById(hit);
+    repository.returnSearchById(hit);
     const updater = new MarkAsFailed(repository, hitmanRepository);
     await expect(
       updater.run(hit.id.value, hitmanActivePerformAction.id.value),
@@ -88,7 +88,7 @@ describe('MarkAsFailed', () => {
       new HitmanId(2),
     );
     hitmanRepository.returnSearchById(hitmanInactivePerformAction);
-    repository.returnSeachById(hit);
+    repository.returnSearchById(hit);
     const updater = new MarkAsFailed(repository, hitmanRepository);
     await expect(
       updater.run(hit.id.value, hitmanInactivePerformAction.id.value),

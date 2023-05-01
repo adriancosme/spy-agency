@@ -1,6 +1,5 @@
-import { HitmanId } from '../../Hitmen/domain/HitmanId';
-import { HitId } from './HitId';
-import { HitStatus } from './HitStatus';
+import { HitmanId } from '../../Hitmen/domain';
+import { HitId, HitStatus } from './';
 import { AggregateRoot } from '../../Shared/domain/AggregateRoot';
 
 export class Hit extends AggregateRoot {

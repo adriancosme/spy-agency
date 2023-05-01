@@ -1,4 +1,4 @@
-import { CuidMother } from '../../../test/Shared/domain/CuidMother';
+import { CuidMother } from '../../Shared/domain/CuidMother';
 import { HitId } from '../../../src/Contexts/Hits/domain';
 
 export class HitIdMother {

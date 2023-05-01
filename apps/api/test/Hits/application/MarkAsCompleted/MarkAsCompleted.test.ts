@@ -1,4 +1,4 @@
-import { HitmanMother } from '../../../../test/Hitmen/domain/HitmanMother';
+import { HitmanMother } from '../../../Hitmen/domain/HitmanMother';
 import {
   Hitman,
   HitmanEmail,
@@ -53,7 +53,7 @@ describe('MarkAsCompleted', () => {
   });
   it('should mark a hit as completed', async () => {
     hitmanRepository.returnSearchById(hitmanActivePerformAction);
-    hitRepository.returnSeachById(hitAssignedExample);
+    hitRepository.returnSearchById(hitAssignedExample);
     const updater = new MarkAsCompleted(hitRepository, hitmanRepository);
     await updater.run(
       hitAssignedExample.id.value,
@@ -88,7 +88,7 @@ describe('MarkAsCompleted', () => {
       hitmanCreatedBy.id,
     );
     hitmanRepository.returnSearchById(hitmanActivePerformAction);
-    hitRepository.returnSeachById(hit);
+    hitRepository.returnSearchById(hit);
     const updater = new MarkAsCompleted(hitRepository, hitmanRepository);
     await expect(
       updater.run(hit.id.value, hitmanActivePerformAction.id.value),
@@ -102,7 +102,7 @@ describe('MarkAsCompleted', () => {
   });
   it('should throw an error if the hitman that performs the action is inactive', async () => {
     hitmanRepository.returnSearchById(hitmanInactivePerformAction);
-    hitRepository.returnSeachById(hitAssignedExample);
+    hitRepository.returnSearchById(hitAssignedExample);
     const updater = new MarkAsCompleted(hitRepository, hitmanRepository);
     await expect(
       updater.run(

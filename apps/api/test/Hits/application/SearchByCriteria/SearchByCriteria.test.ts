@@ -4,9 +4,9 @@ import { SearchHitsByCriteriaQuery } from '../../../../src/Contexts/Hits/applica
 import { SearchHitsByCriteriaQueryHandler } from '../../../../src/Contexts/Hits/application/SearchByCriteria/SearchHitsByCriteriaQueryHandler';
 import { HitStatus } from '../../../../src/Contexts/Hits/domain';
 import { Operator } from '../../../../src/Contexts/Shared/domain/criteria/FilterOperator';
-import { HitRepositoryMock } from '../../../../test/Hits/__mocks__/HitRepositoryMock';
-import { HitMother } from '../../../../test/Hits/domain/HitMother';
-import { SearchHitsByCriteriaResponseMother } from '../../../../test/Hits/domain/SearchHitsByCriteriaResponseMother';
+import { HitRepositoryMock } from '../../__mocks__/HitRepositoryMock';
+import { HitMother } from '../../domain/HitMother';
+import { SearchHitsByCriteriaResponseMother } from '../../domain/SearchHitsByCriteriaResponseMother';
 
 describe('SearchByCriteria QueryHandler', () => {
   let repository: HitRepositoryMock;

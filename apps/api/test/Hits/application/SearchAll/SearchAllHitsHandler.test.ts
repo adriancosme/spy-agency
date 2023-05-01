@@ -1,9 +1,9 @@
-import { HitMother } from '../../../../test/Hits/domain/HitMother';
-import { HitRepositoryMock } from '../../../../test/Hits/__mocks__/HitRepositoryMock';
+import { HitMother } from '../../domain/HitMother';
+import { HitRepositoryMock } from '../../__mocks__/HitRepositoryMock';
 import { SearchAllHitsQueryHandler } from '../../../../src/Contexts/Hits/application/SearchAll/SearchAllHitsQueryHandler';
 import { HitsFinder } from '../../../../src/Contexts/Hits/application/SearchAll/HitsFinder';
 import { SearchAllHitsQuery } from '../../../../src/Contexts/Hits/application/SearchAll/SearchAllHitsQuery';
-import { SearchAllHitsResponseMother } from '../../../../test/Hits/domain/SearchAllHitsResponseMother';
+import { SearchAllHitsResponseMother } from '../../domain/SearchAllHitsResponseMother';
 
 describe('SearchAllHits QueryHandler', () => {
   let repository: HitRepositoryMock;

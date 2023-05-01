@@ -1,11 +1,7 @@
-import { Hitman } from '../../../../src/Contexts/Hitmen/domain/Hitman';
-import { HitmanEmail } from '../../../../src/Contexts/Hitmen/domain/HitmanEmail';
-import { HitmanId } from '../../../../src/Contexts/Hitmen/domain/HitmanId';
-import { faker } from '@faker-js/faker';
-import { HitmanPassword } from '../../../../src/Contexts/Hitmen/domain/HitmanPassword';
-import { HitmanStatus } from '../../../../src/Contexts/Hitmen/domain/HitmanStatus';
-import { HitmanRepositoryMock } from '../../../../test/Hitmen/__mocks__/HitmanRepositoryMock';
+import { Hitman, HitmanEmail, HitmanId, HitmanPassword, HitmanStatus } from '../../../../src/Contexts/Hitmen/domain';
+import { HitmanRepositoryMock } from '../../__mocks__/HitmanRepositoryMock';
 import { HitmanRetired } from '../../../../src/Contexts/Hitmen/application/MaskHitmanAsRetired/HitmanRetired';
+import { faker } from '@faker-js/faker';
 
 describe('HitmanRetired', () => {
   let repository: HitmanRepositoryMock;

@@ -1,7 +1,5 @@
+import { HitmanPassword, HitmanRepository, Hitman} from '../../domain';
 import { CryptoServiceRepository } from '../../../Shared/domain/CryptoServiceRepository';
-import { Hitman } from '../../domain/Hitman';
-import { HitmanPassword } from '../../domain/HitmanPassword';
-import { HitmanRepository } from '../../domain/HitmanRepository';
 
 export class HitmanCreator {
   constructor(

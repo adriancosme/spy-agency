@@ -2,9 +2,9 @@ import { CryptoService } from '../../../../src/Contexts/Shared/infrastructure/cr
 import { UserAuthenticator } from '../../../../src/Contexts/Auth/application/UserAuthenticator';
 import { AuthRepositoryMock } from '../../__mocks__/AuthRepositoryMock';
 import { AuthUser } from '../../../../src/Contexts/Auth/domain/AuthUser';
-import { AuthPasswordMother } from '../../../../test/Auth/domain/AuthPasswordMother';
-import { AuthEmailMother } from '../../../../test/Auth/domain/AuthEmailMother';
-import { AuthUserMother } from '../../../../test/Auth/domain/AuthUserMother';
+import { AuthPasswordMother } from '../../domain/AuthPasswordMother';
+import { AuthEmailMother } from '../../domain/AuthEmailMother';
+import { AuthUserMother } from '../../domain/AuthUserMother';
 
 describe('UserAuthenticator', () => {
   let repository: AuthRepositoryMock;

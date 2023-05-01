@@ -1,5 +1,4 @@
-import { Hit } from 'src/Contexts/Hits/domain/Hit';
-import { HitRepository } from '../../../src/Contexts/Hits/domain/HitRepository';
+import { HitRepository, Hit } from '../../../src/Contexts/Hits/domain';
 import { Criteria } from 'src/Contexts/Shared/domain/criteria/Criteria';
 
 export class HitRepositoryMock implements HitRepository {
@@ -16,7 +15,7 @@ export class HitRepositoryMock implements HitRepository {
     this.hits = hits;
   }
 
-  returnSeachById(hit: Hit): void {
+  returnSearchById(hit: Hit): void {
     this.hit = hit;
   }
 

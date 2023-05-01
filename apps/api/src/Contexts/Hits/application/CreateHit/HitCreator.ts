@@ -1,12 +1,11 @@
-import { HitId } from '../../domain/HitId';
-import { HitRepository } from '../../domain/HitRepository';
-import { HitmanId } from '../../../Hitmen/domain/HitmanId';
 import {
   HitStatus,
   HitStatusEnum,
-} from '../../domain/HitStatus';
-import { Hit } from '../../domain/Hit';
-import { HitmanRepository } from '../../../Hitmen/domain/HitmanRepository';
+  Hit,
+  HitRepository,
+  HitId
+} from '../../domain';
+import { HitmanRepository, HitmanId } from '../../../Hitmen/domain';
 
 export class HitCreator {
   constructor(

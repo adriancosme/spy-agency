@@ -1,9 +1,5 @@
 import { HitmanCreator } from '../../../../src/Contexts/Hitmen/application/Create/HitmanCreator';
-import { Hitman } from '../../../../src/Contexts/Hitmen/domain/Hitman';
-import { HitmanEmail } from '../../../../src/Contexts/Hitmen/domain/HitmanEmail';
-import { HitmanId } from '../../../../src/Contexts/Hitmen/domain/HitmanId';
-import { HitmanPassword } from '../../../../src/Contexts/Hitmen/domain/HitmanPassword';
-import { HitmanStatus } from '../../../../src/Contexts/Hitmen/domain/HitmanStatus';
+import { Hitman, HitmanEmail, HitmanId, HitmanPassword, HitmanStatus } from '../../../../src/Contexts/Hitmen/domain';
 import { CryptoService } from '../../../../src/Contexts/Shared/infrastructure/crypto.service';
 import { HitmanRepositoryMock } from '../../__mocks__/HitmanRepositoryMock';
 
