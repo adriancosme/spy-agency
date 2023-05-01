@@ -1,8 +1,8 @@
-import {AggregateRoot} from '../../Shared/domain/AggregateRoot';
-import {HitmanEmail} from './HitmanEmail';
-import {HitmanId} from './HitmanId';
-import {HitmanPassword} from './HitmanPassword';
-import {HitmanStatus, HitmanStatusEnum} from './HitmanStatus';
+import { AggregateRoot } from '../../Shared/domain/AggregateRoot';
+import { HitmanEmail } from './HitmanEmail';
+import { HitmanId } from './HitmanId';
+import { HitmanPassword } from './HitmanPassword';
+import { HitmanStatus, HitmanStatusEnum } from './HitmanStatus';
 
 export class Hitman extends AggregateRoot {
   readonly id: HitmanId;
@@ -34,11 +34,11 @@ export class Hitman extends AggregateRoot {
     status: string,
   ) {
     return new Hitman(
-        new HitmanId(id),
-        name,
-        new HitmanEmail(email),
-        new HitmanPassword(password),
-        new HitmanStatus(status, Object.values(HitmanStatusEnum)),
+      new HitmanId(id),
+      name,
+      new HitmanEmail(email),
+      new HitmanPassword(password),
+      new HitmanStatus(status, Object.values(HitmanStatusEnum)),
     );
   }
 

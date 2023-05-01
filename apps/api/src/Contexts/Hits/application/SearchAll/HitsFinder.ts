@@ -1,4 +1,4 @@
-import {HitRepository} from '../../domain';
+import { HitRepository } from '../../domain';
 
 export class HitsFinder {
   constructor(private hitsRepository: HitRepository) {}

@@ -1,5 +1,12 @@
 import { HitmanUpdater } from '../../../../src/Contexts/Hitmen/application/Update/HitmanUpdater';
-import { Hitman, HitmanEmail, HitmanId, HitmanPassword, HitmanStatusEnum, HitmanStatus } from '../../../../src/Contexts/Hitmen/domain';
+import {
+  Hitman,
+  HitmanEmail,
+  HitmanId,
+  HitmanPassword,
+  HitmanStatusEnum,
+  HitmanStatus,
+} from '../../../../src/Contexts/Hitmen/domain';
 import { HitmanRepositoryMock } from '../../__mocks__/HitmanRepositoryMock';
 
 describe('HitmanUpdater', () => {

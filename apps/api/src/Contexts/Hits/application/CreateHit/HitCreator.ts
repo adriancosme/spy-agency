@@ -3,7 +3,7 @@ import {
   HitStatusEnum,
   Hit,
   HitRepository,
-  HitId
+  HitId,
 } from '../../domain';
 import { HitmanRepository, HitmanId } from '../../../Hitmen/domain';
 

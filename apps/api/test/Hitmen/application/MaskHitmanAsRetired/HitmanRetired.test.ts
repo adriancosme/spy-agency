@@ -1,4 +1,10 @@
-import { Hitman, HitmanEmail, HitmanId, HitmanPassword, HitmanStatus } from '../../../../src/Contexts/Hitmen/domain';
+import {
+  Hitman,
+  HitmanEmail,
+  HitmanId,
+  HitmanPassword,
+  HitmanStatus,
+} from '../../../../src/Contexts/Hitmen/domain';
 import { HitmanRepositoryMock } from '../../__mocks__/HitmanRepositoryMock';
 import { HitmanRetired } from '../../../../src/Contexts/Hitmen/application/MaskHitmanAsRetired/HitmanRetired';
 import { faker } from '@faker-js/faker';

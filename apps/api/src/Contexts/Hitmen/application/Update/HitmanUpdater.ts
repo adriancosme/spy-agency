@@ -1,4 +1,10 @@
-import { Hitman, HitmanStatusEnum, HitmanRepository, HitmanEmail, HitmanStatus } from '../../domain';
+import {
+  Hitman,
+  HitmanStatusEnum,
+  HitmanRepository,
+  HitmanEmail,
+  HitmanStatus,
+} from '../../domain';
 import { InvalidArgumentError } from '../../../Shared/domain/value-object/InvalidArgumentError';
 
 export class HitmanUpdater {

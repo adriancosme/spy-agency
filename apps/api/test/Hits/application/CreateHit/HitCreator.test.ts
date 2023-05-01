@@ -1,7 +1,12 @@
 import { Cuid } from '../../../../src/Contexts/Shared/domain/value-object/Cuid';
 import { HitRepositoryMock } from '../../__mocks__/HitRepositoryMock';
 import { HitCreator } from '../../../../src/Contexts/Hits/application/CreateHit/HitCreator';
-import { Hit, HitId, HitStatus, HitStatusEnum } from '../../../../src/Contexts/Hits/domain';
+import {
+  Hit,
+  HitId,
+  HitStatus,
+  HitStatusEnum,
+} from '../../../../src/Contexts/Hits/domain';
 import { HitmanRepositoryMock } from '../../../Hitmen/__mocks__/HitmanRepositoryMock';
 import {
   HitmanId,
@@ -9,7 +14,7 @@ import {
   HitmanStatusEnum,
   Hitman,
   HitmanEmail,
-  HitmanPassword
+  HitmanPassword,
 } from '../../../../src/Contexts/Hitmen/domain';
 
 describe('HitCreator', () => {

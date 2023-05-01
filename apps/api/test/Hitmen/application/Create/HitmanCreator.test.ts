@@ -1,5 +1,11 @@
 import { HitmanCreator } from '../../../../src/Contexts/Hitmen/application/Create/HitmanCreator';
-import { Hitman, HitmanEmail, HitmanId, HitmanPassword, HitmanStatus } from '../../../../src/Contexts/Hitmen/domain';
+import {
+  Hitman,
+  HitmanEmail,
+  HitmanId,
+  HitmanPassword,
+  HitmanStatus,
+} from '../../../../src/Contexts/Hitmen/domain';
 import { CryptoService } from '../../../../src/Contexts/Shared/infrastructure/crypto.service';
 import { HitmanRepositoryMock } from '../../__mocks__/HitmanRepositoryMock';
 
