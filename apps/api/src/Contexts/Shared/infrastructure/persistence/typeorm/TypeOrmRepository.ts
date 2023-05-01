@@ -1,8 +1,14 @@
 import { Connection, EntitySchema, Repository } from 'typeorm';
 import { AggregateRoot } from '../../../domain/AggregateRoot';
+import { TypeOrmCriteriaConverter } from "../../../../Hits/infrastructure/persistence/TypeOrmCriteriaConverter";
+import { Criteria } from "../../../domain/criteria/Criteria";
 
 export abstract class TypeOrmRepository<T extends AggregateRoot> {
-  constructor(private _client: Promise<Connection>) {}
+  private criteriaConverter: TypeOrmCriteriaConverter;
+
+  constructor(private _client: Promise<Connection>) {
+    this.criteriaConverter = new TypeOrmCriteriaConverter()
+  }
 
   protected abstract entitySchema(): EntitySchema<T>;
 
@@ -17,5 +23,12 @@ export abstract class TypeOrmRepository<T extends AggregateRoot> {
   protected async persist(aggregateRoot: T): Promise<void> {
     const repository = await this.repository();
     await repository.save(aggregateRoot as any);
+  }
+
+  protected async searchByCriteria<D>(criteria: Criteria): Promise<T[]> {
+    const repository = await this.repository();
+    const queryBuilder = repository.createQueryBuilder();
+    const query = this.criteriaConverter.convert<T>(queryBuilder, criteria);
+    return query.getMany();
   }
 }

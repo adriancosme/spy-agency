@@ -5,6 +5,8 @@ export enum Operator {
   NOT_EQUAL = '!=',
   GT = '>',
   LT = '<',
+  LTE = '<=',
+  GTE = '>=',
   CONTAINS = 'CONTAINS',
   NOT_CONTAINS = 'NOT_CONTAINS',
 }
