@@ -1,9 +1,22 @@
+import { HitmanRepository, HitmanStatus } from '../../../Hitmen/domain';
 import { Hit, HitRepository, HitStatus } from '../../domain';
 
 export class MarkAsCompleted {
-  constructor(private hitRepository: HitRepository) {}
-  async run(id: string) {
-    const hit = await this.hitRepository.searchById(id);
+  constructor(
+    private hitRepository: HitRepository,
+    private hitmanRepository: HitmanRepository,
+  ) {}
+  async run(hitId: string, hitmanPerformActionId: number) {
+    const hitmanPerformAction = await this.hitmanRepository.searchById(
+      hitmanPerformActionId,
+    );
+    if (hitmanPerformAction == null) {
+      throw new Error('Hitman not found');
+    }
+    if (hitmanPerformAction.status.value === HitmanStatus.INACTIVE.value) {
+      throw new Error('Hitman that performs the action is INACTIVE');
+    }
+    const hit = await this.hitRepository.searchById(hitId);
     if (hit == null) {
       throw new Error('Hit not found');
     }

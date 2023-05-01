@@ -28,12 +28,27 @@ describe('MarkAsCompleted', () => {
     new HitmanPassword('asfA2FXVsa32XX'),
     HitmanStatus.ACTIVE,
   );
+
+  const hitmanInactivePerformAction = new Hitman(
+    new HitmanId(2),
+    'Joe Doe',
+    new HitmanEmail('joe@spy.com'),
+    new HitmanPassword('ASDx2asfSAF'),
+    HitmanStatus.INACTIVE,
+  );
+  const hitmanActivePerformAction = new Hitman(
+    new HitmanId(2),
+    'Joe Doe',
+    new HitmanEmail('joe@spy.com'),
+    new HitmanPassword('ASDx2asfSAF'),
+    HitmanStatus.ACTIVE,
+  );
+
+  let hitAssignedExample: Hit;
   beforeEach(() => {
     hitRepository = new HitRepositoryMock();
     hitmanRepository = new HitmanRepositoryMock();
-  });
-  it('should mark a hit as completed', async () => {
-    const hit = new Hit(
+    hitAssignedExample = new Hit(
       new HitId(Cuid.random().value),
       hitmanAssignedTo.id,
       'Lorem ipsum',
@@ -41,25 +56,31 @@ describe('MarkAsCompleted', () => {
       new HitStatus(HitStatus.ASSIGNED.value, HitStatus.VALID_STATUS),
       hitmanCreatedBy.id,
     );
-    hitmanRepository.returnSearchById(hitmanAssignedTo);
-    hitRepository.returnSeachById(hit);
-    const updater = new MarkAsCompleted(hitRepository);
-    await updater.run(hit.id.value);
+  });
+  it('should mark a hit as completed', async () => {
+    hitmanRepository.returnSearchById(hitmanActivePerformAction);
+    hitRepository.returnSeachById(hitAssignedExample);
+    const updater = new MarkAsCompleted(hitRepository, hitmanRepository);
+    await updater.run(
+      hitAssignedExample.id.value,
+      hitmanActivePerformAction.id.value,
+    );
     const hitUpdated = new Hit(
-      hit.id,
-      hit.assignedTo,
-      hit.description,
-      hit.target,
+      hitAssignedExample.id,
+      hitAssignedExample.assignedTo,
+      hitAssignedExample.description,
+      hitAssignedExample.target,
       HitStatus.COMPLETED,
-      hit.createdBy,
+      hitAssignedExample.createdBy,
     );
     hitRepository.assertUpdateHasBeenCalledWith(hitUpdated);
   });
   it('should throw an error if the hit does not exist', async () => {
-    const updater = new MarkAsCompleted(hitRepository);
-    await expect(updater.run(Cuid.random().value)).rejects.toThrowError(
-      'Hit not found',
-    );
+    hitmanRepository.returnSearchById(hitmanActivePerformAction);
+    const updater = new MarkAsCompleted(hitRepository, hitmanRepository);
+    await expect(
+      updater.run(Cuid.random().value, hitmanActivePerformAction.id.value),
+    ).rejects.toThrowError('Hit not found');
   });
   it('should throw an error if the hit is already completed', async () => {
     const hit = new Hit(
@@ -70,10 +91,28 @@ describe('MarkAsCompleted', () => {
       new HitStatus(HitStatus.COMPLETED.value, HitStatus.VALID_STATUS),
       hitmanCreatedBy.id,
     );
+    hitmanRepository.returnSearchById(hitmanActivePerformAction);
     hitRepository.returnSeachById(hit);
-    const updater = new MarkAsCompleted(hitRepository);
-    await expect(updater.run(hit.id.value)).rejects.toThrowError(
-      'Hit already completed',
-    );
+    const updater = new MarkAsCompleted(hitRepository, hitmanRepository);
+    await expect(
+      updater.run(hit.id.value, hitmanActivePerformAction.id.value),
+    ).rejects.toThrowError('Hit already completed');
+  });
+  it('should throw an error if the hitman that performs the action not exists', async () => {
+    const updater = new MarkAsCompleted(hitRepository, hitmanRepository);
+    await expect(
+      updater.run(Cuid.random().value, hitmanActivePerformAction.id.value),
+    ).rejects.toThrowError('Hitman not found');
+  });
+  it('should throw an error if the hitman that performs the action is inactive', async () => {
+    hitmanRepository.returnSearchById(hitmanInactivePerformAction);
+    hitRepository.returnSeachById(hitAssignedExample);
+    const updater = new MarkAsCompleted(hitRepository, hitmanRepository);
+    await expect(
+      updater.run(
+        hitAssignedExample.id.value,
+        hitmanActivePerformAction.id.value,
+      ),
+    ).rejects.toThrowError('Hitman that performs the action is INACTIVE');
   });
 });
