@@ -1,40 +1,26 @@
-import { HitmanId } from '../../Hitmen/domain';
-import { HitId, HitStatus } from './';
-import { AggregateRoot } from '../../Shared/domain/AggregateRoot';
+import { HitStatusEnum } from './';
 
-export class Hit extends AggregateRoot {
-  readonly id: HitId;
-  readonly assignedTo: HitmanId;
+export class Hit {
+  readonly id: string;
+  readonly assignedTo: number;
   readonly description: string;
   readonly target: string;
-  readonly status: HitStatus;
-  readonly createdBy: HitmanId;
+  readonly status: HitStatusEnum;
+  readonly createdBy: number;
 
   constructor(
-    id: HitId,
-    assignedTo: HitmanId,
+    id: string,
+    assignedTo: number,
     description: string,
     target: string,
-    status: HitStatus,
-    createdBy: HitmanId,
+    status: HitStatusEnum,
+    createdBy: number,
   ) {
-    super();
     this.id = id;
     this.assignedTo = assignedTo;
     this.description = description;
     this.target = target;
     this.status = status;
     this.createdBy = createdBy;
-  }
-
-  toPrimitives() {
-    return {
-      id: this.id.value,
-      assignedTo: this.assignedTo.value,
-      description: this.description,
-      target: this.target,
-      status: this.status.value,
-      createdBy: this.createdBy.value,
-    };
   }
 }

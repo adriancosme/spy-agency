@@ -1,42 +1,40 @@
 import { HitmanMother } from '../../../Hitmen/domain/HitmanMother';
 import {
   Hitman,
-  HitmanEmail,
-  HitmanId,
-  HitmanPassword,
-  HitmanStatus,
+  HitmanStatusEnum,
 } from '../../../../../src/Contexts/Hitmen/domain';
 import { MarkAsCompleted } from '../../../../../src/Contexts/Hits/application/MarkAsCompleted/MarkAsCompleted';
-import {
-  Hit,
-  HitId,
-  HitStatus,
-  HitStatusEnum,
-} from '../../../../../src/Contexts/Hits/domain';
-import { Cuid } from '../../../../../src/Contexts/Shared/domain/value-object/Cuid';
+import { Hit, HitStatusEnum } from '../../../../../src/Contexts/Hits/domain';
 import { HitmanRepositoryMock } from '../../../Hitmen/__mocks__/HitmanRepositoryMock';
 import { HitRepositoryMock } from '../../__mocks__/HitRepositoryMock';
-import {HitmanRoleMother} from "../../../Hitmen/domain/HitmanRoleMother";
+import { HitmanRoleMother } from '../../../Hitmen/domain/HitmanRoleMother';
+import { HitmanIdMother } from '../../../Hitmen/domain/HitmanIdMother';
+import { HitmanNameMother } from '../../../Hitmen/domain/HitmanNameMother';
+import { HitmanEmailMother } from '../../../Hitmen/domain/HitmanEmailMother';
+import { HitmanPasswordMother } from '../../../Hitmen/domain/HitmanPasswordMother';
+import { HitIdMother } from '../../domain/HitIdMother';
+import { HitDescriptionMother } from '../../domain/HitDescriptionMother';
+import { HitTargetMother } from '../../domain/HitTargetMother';
 
 describe('MarkAsCompleted', () => {
   let hitRepository: HitRepositoryMock;
   let hitmanRepository: HitmanRepositoryMock;
 
   const hitmanInactivePerformAction = new Hitman(
-    new HitmanId(2),
-    'Joe Doe',
-    new HitmanEmail('joe@spy.com'),
-    new HitmanPassword('ASDx2asfSAF'),
-    HitmanStatus.INACTIVE,
-    HitmanRoleMother.random()
+    HitmanIdMother.random(),
+    HitmanNameMother.random(),
+    HitmanEmailMother.random(),
+    HitmanPasswordMother.random(),
+    HitmanStatusEnum.INACTIVE,
+    HitmanRoleMother.random(),
   );
   const hitmanActivePerformAction = new Hitman(
-    new HitmanId(2),
-    'Joe Doe',
-    new HitmanEmail('joe@spy.com'),
-    new HitmanPassword('ASDx2asfSAF'),
-    HitmanStatus.ACTIVE,
-    HitmanRoleMother.random()
+    HitmanIdMother.random(),
+    HitmanNameMother.random(),
+    HitmanEmailMother.random(),
+    HitmanPasswordMother.random(),
+    HitmanStatusEnum.ACTIVE,
+    HitmanRoleMother.random(),
   );
 
   let hitAssignedExample: Hit;
@@ -46,11 +44,11 @@ describe('MarkAsCompleted', () => {
     const hitmanAssignedTo = HitmanMother.random();
     const hitmanCreatedBy = HitmanMother.random();
     hitAssignedExample = new Hit(
-      new HitId(Cuid.random().value),
+      HitIdMother.random(),
       hitmanAssignedTo.id,
-      'Lorem ipsum',
-      'Juan Perez',
-      new HitStatus(HitStatus.ASSIGNED.value, Object.values(HitStatusEnum)),
+      HitDescriptionMother.random(),
+      HitTargetMother.random(),
+      HitStatusEnum.ASSIGNED,
       hitmanCreatedBy.id,
     );
   });
@@ -58,16 +56,13 @@ describe('MarkAsCompleted', () => {
     hitmanRepository.returnSearchById(hitmanActivePerformAction);
     hitRepository.returnSearchById(hitAssignedExample);
     const updater = new MarkAsCompleted(hitRepository, hitmanRepository);
-    await updater.run(
-      hitAssignedExample.id.value,
-      hitmanActivePerformAction.id.value,
-    );
+    await updater.run(hitAssignedExample.id, hitmanActivePerformAction.id);
     const hitUpdated = new Hit(
       hitAssignedExample.id,
       hitAssignedExample.assignedTo,
       hitAssignedExample.description,
       hitAssignedExample.target,
-      HitStatus.COMPLETED,
+      HitStatusEnum.COMPLETED,
       hitAssignedExample.createdBy,
     );
     hitRepository.assertUpdateHasBeenCalledWith(hitUpdated);
@@ -76,31 +71,31 @@ describe('MarkAsCompleted', () => {
     hitmanRepository.returnSearchById(hitmanActivePerformAction);
     const updater = new MarkAsCompleted(hitRepository, hitmanRepository);
     await expect(
-      updater.run(Cuid.random().value, hitmanActivePerformAction.id.value),
+      updater.run(HitIdMother.random(), hitmanActivePerformAction.id),
     ).rejects.toThrowError('Hit not found');
   });
   it('should throw an error if the hit is already completed', async () => {
     const hitmanAssignedTo = HitmanMother.random();
     const hitmanCreatedBy = HitmanMother.random();
     const hit = new Hit(
-      new HitId(Cuid.random().value),
+      HitIdMother.random(),
       hitmanAssignedTo.id,
-      'Lorem ipsum',
-      'Juan Perez',
-      new HitStatus(HitStatus.COMPLETED.value, Object.values(HitStatusEnum)),
+      HitDescriptionMother.random(),
+      HitTargetMother.random(),
+      HitStatusEnum.COMPLETED,
       hitmanCreatedBy.id,
     );
     hitmanRepository.returnSearchById(hitmanActivePerformAction);
     hitRepository.returnSearchById(hit);
     const updater = new MarkAsCompleted(hitRepository, hitmanRepository);
     await expect(
-      updater.run(hit.id.value, hitmanActivePerformAction.id.value),
+      updater.run(hit.id, hitmanActivePerformAction.id),
     ).rejects.toThrowError('Hit already completed');
   });
   it('should throw an error if the hitman that performs the action not exists', async () => {
     const updater = new MarkAsCompleted(hitRepository, hitmanRepository);
     await expect(
-      updater.run(Cuid.random().value, hitmanActivePerformAction.id.value),
+      updater.run(HitIdMother.random(), hitmanActivePerformAction.id),
     ).rejects.toThrowError('Hitman not found');
   });
   it('should throw an error if the hitman that performs the action is inactive', async () => {
@@ -108,10 +103,7 @@ describe('MarkAsCompleted', () => {
     hitRepository.returnSearchById(hitAssignedExample);
     const updater = new MarkAsCompleted(hitRepository, hitmanRepository);
     await expect(
-      updater.run(
-        hitAssignedExample.id.value,
-        hitmanActivePerformAction.id.value,
-      ),
+      updater.run(hitAssignedExample.id, hitmanActivePerformAction.id),
     ).rejects.toThrowError('Hitman that performs the action is INACTIVE');
   });
 });

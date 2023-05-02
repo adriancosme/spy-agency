@@ -9,7 +9,7 @@ export class HitmanRepositoryMock implements HitmanRepository {
   private searchByIdMock: jest.Mock = jest.fn();
   private searchByEmailMock: jest.Mock = jest.fn();
   private updateMock: jest.Mock = jest.fn();
-  private hitmans: Array<Hitman> = [];
+  private hitmen: Array<Hitman> = [];
   private hitman: Hitman;
   returnSearchById(hitman: Hitman): void {
     this.hitman = hitman;
@@ -19,8 +19,8 @@ export class HitmanRepositoryMock implements HitmanRepository {
     this.hitman = hitman;
   }
 
-  returnSearchAll(hitmans: Array<Hitman>): void {
-    this.hitmans = hitmans;
+  returnSearchAll(hitmen: Array<Hitman>): void {
+    this.hitmen = hitmen;
   }
 
   async save(hitman: Hitman): Promise<void> {
@@ -33,7 +33,7 @@ export class HitmanRepositoryMock implements HitmanRepository {
 
   async searchAll(): Promise<Hitman[]> {
     this.searchAllMock();
-    return this.hitmans;
+    return this.hitmen;
   }
 
   assertSearchAllHaveBeenCalled(): void {

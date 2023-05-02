@@ -1,14 +1,10 @@
 import {
   Hitman,
-  HitmanEmail,
-  HitmanId,
-  HitmanPassword,
-  HitmanStatus,
+  HitmanStatusEnum,
 } from '../../../../../src/Contexts/Hitmen/domain';
 import { HitmanRepositoryMock } from '../../__mocks__/HitmanRepositoryMock';
 import { HitmanRetired } from '../../../../../src/Contexts/Hitmen/application/MaskHitmanAsRetired/HitmanRetired';
-import { faker } from '@faker-js/faker';
-import {HitmanRoleMother} from "../../domain/HitmanRoleMother";
+import { HitmanMother } from '../../domain/HitmanMother';
 
 describe('HitmanRetired', () => {
   let repository: HitmanRepositoryMock;
@@ -16,39 +12,25 @@ describe('HitmanRetired', () => {
     repository = new HitmanRepositoryMock();
   });
   it('should mask hitman as retired', async () => {
-    const hitman = new Hitman(
-      new HitmanId(4),
-      'John Doe',
-      new HitmanEmail(faker.internet.email()),
-      new HitmanPassword('12fassajkl21DSA'),
-      HitmanStatus.ACTIVE,
-      HitmanRoleMother.random()
-    );
+    const hitman = HitmanMother.random();
     const hitmanUpdated = new Hitman(
       hitman.id,
       hitman.name,
       hitman.email,
       hitman.password,
-      HitmanStatus.INACTIVE,
-      hitman.role
+      HitmanStatusEnum.INACTIVE,
+      hitman.role,
     );
     repository.returnSearchById(hitman);
     const updater = new HitmanRetired(repository);
-    await updater.run(hitman.id.value);
+    await updater.run(hitman.id);
     repository.assertUpdateHaveBeenCalledWith(hitmanUpdated);
   });
   it('should throw an error if hitman does not exist', async () => {
     try {
-      const hitman = new Hitman(
-        new HitmanId(1),
-        'John Doe',
-        new HitmanEmail(faker.internet.email()),
-        new HitmanPassword('12fassajkl21DSA'),
-        HitmanStatus.ACTIVE,
-        HitmanRoleMother.random()
-      );
+      const hitman = HitmanMother.random();
       const updater = new HitmanRetired(repository);
-      await updater.run(hitman.id.value);
+      await updater.run(hitman.id);
       expect(true).toBeFalsy();
     } catch (error) {
       expect(error).toHaveProperty('message', 'Hitman not found');

@@ -1,10 +1,10 @@
-import {HitmanRole, HitmanRoleEnum} from "../../../../src/Contexts/Hitmen/domain/HitmanRole";
+import { HitmanRoleEnum } from '../../../../src/Contexts/Hitmen/domain';
 
 export class HitmanRoleMother {
-  static create(value: string): HitmanRole {
-    return new HitmanRole(value, Object.values(HitmanRoleEnum))
+  static create(value: string): HitmanRoleEnum {
+    return value as HitmanRoleEnum;
   }
-  static random(): HitmanRole {
+  static random(): HitmanRoleEnum {
     const values = Object.values(HitmanRoleEnum);
     const enumKey = values[Math.floor(Math.random() * values.length)];
     return this.create(HitmanRoleEnum[enumKey]);

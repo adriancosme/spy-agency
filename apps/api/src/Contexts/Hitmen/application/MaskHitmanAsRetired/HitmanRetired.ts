@@ -1,4 +1,4 @@
-import { Hitman, HitmanRepository, HitmanStatus } from '../../domain';
+import { Hitman, HitmanRepository, HitmanStatusEnum } from '../../domain';
 
 export class HitmanRetired {
   constructor(private repository: HitmanRepository) {}
@@ -13,8 +13,8 @@ export class HitmanRetired {
       hitman.name,
       hitman.email,
       hitman.password,
-      HitmanStatus.INACTIVE,
-      hitman.role
+      HitmanStatusEnum.INACTIVE,
+      hitman.role,
     );
     await this.repository.update(newHitman);
   }

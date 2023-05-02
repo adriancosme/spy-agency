@@ -13,6 +13,6 @@ export class HitsResponse {
   public readonly hits: Array<HitResponse>;
 
   constructor(hits: Array<Hit>) {
-    this.hits = hits.map((hit) => hit.toPrimitives());
+    this.hits = hits.map((hit) => hit);
   }
 }

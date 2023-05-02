@@ -1,22 +1,22 @@
-import { Cuid } from '../../../../../src/Contexts/Shared/domain/value-object/Cuid';
 import { HitRepositoryMock } from '../../__mocks__/HitRepositoryMock';
 import { HitCreator } from '../../../../../src/Contexts/Hits/application/CreateHit/HitCreator';
-import {
-  Hit,
-  HitId,
-  HitStatus,
-  HitStatusEnum,
-} from '../../../../../src/Contexts/Hits/domain';
+import { Hit } from '../../../../../src/Contexts/Hits/domain';
 import { HitmanRepositoryMock } from '../../../Hitmen/__mocks__/HitmanRepositoryMock';
 import {
-  HitmanId,
-  HitmanStatus,
-  HitmanStatusEnum,
   Hitman,
-  HitmanEmail,
-  HitmanPassword,
+  HitmanRoleEnum,
+  HitmanStatusEnum,
 } from '../../../../../src/Contexts/Hitmen/domain';
-import {HitmanRoleMother} from "../../../Hitmen/domain/HitmanRoleMother";
+import { HitmanRoleMother } from '../../../Hitmen/domain/HitmanRoleMother';
+import { HitmanMother } from '../../../Hitmen/domain/HitmanMother';
+import { HitIdMother } from '../../domain/HitIdMother';
+import { HitDescriptionMother } from '../../domain/HitDescriptionMother';
+import { HitmanNameMother } from '../../../Hitmen/domain/HitmanNameMother';
+import { HitStatusMother } from '../../domain/HitStatusMother';
+import { HitmanIdMother } from '../../../Hitmen/domain/HitmanIdMother';
+import { HitmanEmailMother } from '../../../Hitmen/domain/HitmanEmailMother';
+import { HitmanPasswordMother } from '../../../Hitmen/domain/HitmanPasswordMother';
+import { HitTargetMother } from '../../domain/HitTargetMother';
 
 describe('HitCreator', () => {
   let repository: HitRepositoryMock;
@@ -28,91 +28,84 @@ describe('HitCreator', () => {
   });
   it('should create a hit', async () => {
     const hitmanAssignedTo = new Hitman(
-      new HitmanId(3),
-      'Juan Perez',
-      new HitmanEmail('juanperez@gmail.com'),
-      new HitmanPassword('jPerez09124214'),
-      new HitmanStatus(
-        HitmanStatus.ACTIVE.value,
-        Object.values(HitmanStatusEnum),
-      ),
-      HitmanRoleMother.random()
+      HitmanIdMother.random(),
+      HitmanNameMother.random(),
+      HitmanEmailMother.random(),
+      HitmanPasswordMother.random(),
+      HitmanStatusEnum.ACTIVE,
+      HitmanRoleEnum.HITMAN,
     );
     hitmanRepository.returnSearchById(hitmanAssignedTo);
 
     const hit = new Hit(
-      new HitId(Cuid.random().value),
+      HitIdMother.random(),
       hitmanAssignedTo.id,
-      'Lorem ipsum',
-      'Juan Perez',
-      new HitStatus(HitStatus.ASSIGNED.value, Object.values(HitStatusEnum)),
-      new HitmanId(1),
+      HitDescriptionMother.random(),
+      HitmanNameMother.random(),
+      HitStatusMother.random(),
+      HitmanMother.random().id,
     );
     const creator = new HitCreator(repository, hitmanRepository);
     await expect(
       creator.run(
-        hit.id.value,
-        hit.assignedTo.value,
+        hit.id,
+        hit.assignedTo,
         hit.description,
         hit.target,
-        hit.status.value,
-        hit.createdBy.value,
+        hit.status,
+        hit.createdBy,
       ),
     ).resolves.not.toThrow();
     repository.assertSaveHasBeenCalledWith(hit);
   });
   it('should throw an error if try to create a hit with retired hitman', async () => {
     const hitmanAssignedTo = new Hitman(
-      new HitmanId(3),
-      'Juan Perez',
-      new HitmanEmail('juanperez@gmail.com'),
-      new HitmanPassword('jPerez09124214'),
-      new HitmanStatus(
-        HitmanStatus.INACTIVE.value,
-        Object.values(HitmanStatusEnum),
-      ),
-      HitmanRoleMother.random()
+      HitmanIdMother.random(),
+      HitmanNameMother.random(),
+      HitmanEmailMother.random(),
+      HitmanPasswordMother.random(),
+      HitmanStatusEnum.INACTIVE,
+      HitmanRoleMother.random(),
     );
     hitmanRepository.returnSearchById(hitmanAssignedTo);
     const hit = new Hit(
-      new HitId(Cuid.random().value),
+      HitIdMother.random(),
       hitmanAssignedTo.id,
-      'Lorem ipsum',
-      'Juan Perez',
-      new HitStatus(HitStatus.ASSIGNED.value, Object.values(HitStatusEnum)),
-      new HitmanId(1),
+      HitDescriptionMother.random(),
+      HitmanNameMother.random(),
+      HitStatusMother.random(),
+      HitmanMother.random().id,
     );
     const creator = new HitCreator(repository, hitmanRepository);
     await expect(
       creator.run(
-        hit.id.value,
-        hit.assignedTo.value,
+        hit.id,
+        hit.assignedTo,
         hit.description,
         hit.target,
-        hit.status.value,
-        hit.createdBy.value,
+        hit.status,
+        hit.createdBy,
       ),
     ).rejects.toThrowError('Hitman is retired');
   });
   it('should throw an error if the hitman is not found', async () => {
     const hit = new Hit(
-      new HitId(Cuid.random().value),
-      new HitmanId(3),
-      'Lorem ipsum',
-      'Juan Perez',
-      new HitStatus(HitStatus.ASSIGNED.value, Object.values(HitStatusEnum)),
-      new HitmanId(1),
+      HitIdMother.random(),
+      HitmanIdMother.random(),
+      HitDescriptionMother.random(),
+      HitTargetMother.random(),
+      HitStatusMother.random(),
+      HitmanIdMother.random(),
     );
-    hitmanRepository.returnSearchById(null);
     const creator = new HitCreator(repository, hitmanRepository);
     await expect(
       creator.run(
-        hit.id.value,
-        hit.assignedTo.value,
+        hit.id,
+        hit.assignedTo,
         hit.description,
         hit.target,
-        hit.status.value,
-        hit.createdBy.value,
+        hit.status,
+        hit.createdBy,
       ),
     ).rejects.toThrowError('Hitman not found');
   });

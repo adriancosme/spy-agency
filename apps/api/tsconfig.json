@@ -1,28 +1,22 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "es6",
-    "noImplicitAny": true,
-    "moduleResolution": "node",
-    "sourceMap": false,
-    "rootDir": ".",
-    "strict": true,
-    "noEmit": false,
-    "resolveJsonModule": true,
-    "noUnusedLocals": true,
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
     "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "inlineSources": true,
+    "sourceRoot": "src",
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
-    "skipLibCheck": true,
-    "strictNullChecks": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "resolveJsonModule": true,
+    "lib": ["ESNext"],
+  },
+  "exclude": ["node_modules", "dist"]
 }

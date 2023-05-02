@@ -1,8 +1,10 @@
 import { MotherCreator } from '../../Shared/domain/MotherCreator';
-import {HitmanPassword} from "../../../../src/Contexts/Hitmen/domain";
 
 export class HitmanPasswordMother {
-  static random(): HitmanPassword {
-    return new HitmanPassword(MotherCreator.random().internet.password());
+  static create(value?: string): string {
+    return value || this.random();
+  }
+  static random(): string {
+    return MotherCreator.random().internet.password();
   }
 }

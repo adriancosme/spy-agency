@@ -1,11 +1,5 @@
-import {
-  HitStatus,
-  HitStatusEnum,
-  Hit,
-  HitRepository,
-  HitId,
-} from '../../domain';
-import { HitmanRepository, HitmanId } from '../../../Hitmen/domain';
+import { Hit, HitRepository, HitStatusEnum } from '../../domain';
+import { HitmanRepository, HitmanStatusEnum } from '../../../Hitmen/domain';
 
 export class HitCreator {
   constructor(
@@ -18,23 +12,23 @@ export class HitCreator {
     assignedTo: number,
     description: string,
     target: string,
-    status: string,
+    status: HitStatusEnum,
     createdBy: number,
   ) {
     const hitmanAssignedTo = await this.hitmanRepository.searchById(assignedTo);
     if (hitmanAssignedTo == null) {
       throw new Error('Hitman not found');
     }
-    if (hitmanAssignedTo.isRetired()) {
+    if (hitmanAssignedTo.status === HitmanStatusEnum.INACTIVE) {
       throw new Error('Hitman is retired');
     }
     const hit = new Hit(
-      new HitId(id),
+      id,
       hitmanAssignedTo.id,
       description,
       target,
-      new HitStatus(status, Object.values(HitStatusEnum)),
-      new HitmanId(createdBy),
+      status,
+      createdBy,
     );
     await this.repository.save(hit);
   }

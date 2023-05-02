@@ -1,5 +1,5 @@
-import { HitmanRepository, HitmanStatus } from '../../../Hitmen/domain';
-import { Hit, HitRepository, HitStatus } from '../../domain';
+import { HitmanRepository, HitmanStatusEnum } from '../../../Hitmen/domain';
+import { Hit, HitRepository, HitStatusEnum } from '../../domain';
 
 export class MarkAsCompleted {
   constructor(
@@ -13,14 +13,14 @@ export class MarkAsCompleted {
     if (hitmanPerformAction == null) {
       throw new Error('Hitman not found');
     }
-    if (hitmanPerformAction.status.value === HitmanStatus.INACTIVE.value) {
+    if (hitmanPerformAction.status === HitmanStatusEnum.INACTIVE) {
       throw new Error('Hitman that performs the action is INACTIVE');
     }
     const hit = await this.hitRepository.searchById(hitId);
     if (hit == null) {
       throw new Error('Hit not found');
     }
-    if (hit.status.value === HitStatus.COMPLETED.value) {
+    if (hit.status === HitStatusEnum.COMPLETED) {
       throw new Error('Hit already completed');
     }
     const newHit = new Hit(
@@ -28,7 +28,7 @@ export class MarkAsCompleted {
       hit.assignedTo,
       hit.description,
       hit.target,
-      HitStatus.COMPLETED,
+      HitStatusEnum.COMPLETED,
       hit.createdBy,
     );
     await this.hitRepository.update(newHit);

@@ -1,5 +1,4 @@
-import { HitmanId } from '../../../../src/Contexts/Hitmen/domain';
-import { Hit, HitId, HitStatus } from '../../../../src/Contexts/Hits/domain';
+import { Hit, HitStatusEnum } from '../../../../src/Contexts/Hits/domain';
 import { HitIdMother } from './HitIdMother';
 import { HitAssigedToMother } from './HitAssigedToMother';
 import { HitDescriptionMother } from './HitDescriptionMother';
@@ -9,12 +8,12 @@ import { HitCreatedByMother } from './HitCreatedByMother';
 
 export class HitMother {
   static create(
-    id: HitId,
-    assignedTo: HitmanId,
+    id: string,
+    assignedTo: number,
     description: string,
     target: string,
-    status: HitStatus,
-    createdBy: HitmanId,
+    status: HitStatusEnum,
+    createdBy: number,
   ): Hit {
     return new Hit(id, assignedTo, description, target, status, createdBy);
   }

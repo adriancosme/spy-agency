@@ -1,5 +1,5 @@
-import { HitmanRepository } from 'src/Contexts/Hitmen/domain';
-import { Hit, HitRepository, HitStatus } from '../../domain';
+import { Hit, HitRepository, HitStatusEnum } from '../../domain';
+import { HitmanRepository, HitmanStatusEnum } from '../../../Hitmen/domain';
 
 export class MarkAsFailed {
   constructor(
@@ -14,14 +14,14 @@ export class MarkAsFailed {
     if (hitmanPerformAction == null) {
       throw new Error('Hitman not found');
     }
-    if (hitmanPerformAction.isRetired()) {
+    if (hitmanPerformAction.status === HitmanStatusEnum.INACTIVE) {
       throw new Error('Hitman that performs the action is INACTIVE');
     }
     const hit = await this.repository.searchById(hitId);
     if (hit == null) {
       throw new Error('Hit not found');
     }
-    if (hit.status === HitStatus.FAILED) {
+    if (hit.status === HitStatusEnum.FAILED) {
       throw new Error('Hit already failed');
     }
     const newHit = new Hit(
@@ -29,7 +29,7 @@ export class MarkAsFailed {
       hit.assignedTo,
       hit.description,
       hit.target,
-      HitStatus.FAILED,
+      HitStatusEnum.FAILED,
       hit.createdBy,
     );
     this.repository.update(newHit);

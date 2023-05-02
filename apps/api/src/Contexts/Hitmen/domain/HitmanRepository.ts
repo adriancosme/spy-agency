@@ -1,9 +1,13 @@
-import { Hitman } from './Hitman';
+import { Hitman } from '../../Shared/domain/Hitman';
 
 export interface HitmanRepository {
-  save(user: Hitman): Promise<void>;
+  save(hitman: Hitman): Promise<void>;
+
   searchAll(): Promise<Array<Hitman>>;
-  searchById(id: number): Promise<Hitman>;
-  searchByEmail(email: string): Promise<Hitman>;
-  update(user: Hitman): Promise<void>;
+
+  searchById(id: number): Promise<Hitman | null>;
+
+  searchByEmail(email: string): Promise<Hitman | null>;
+
+  update(hitman: Hitman): Promise<void>;
 }
