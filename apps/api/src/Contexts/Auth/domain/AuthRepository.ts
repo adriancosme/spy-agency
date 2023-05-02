@@ -1,6 +1,5 @@
-import { AuthEmail } from './AuthEmail';
-import { AuthUser } from './AuthUser';
+import { Hitman } from '../../Hitmen/domain';
 
 export interface AuthRepository {
-  search(email: AuthEmail): Promise<AuthUser | null>;
+  search(email: string): Promise<Hitman | null>;
 }
