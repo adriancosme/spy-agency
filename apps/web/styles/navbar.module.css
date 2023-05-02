@@ -1,0 +1,12 @@
+.headerWrapper {
+  display: flex;
+  justify-content: center;
+  background-color: red;
+}
+
+.navWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+
+}
