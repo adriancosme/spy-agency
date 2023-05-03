@@ -57,7 +57,7 @@ export function AuthProvider({
     }
   };
 
-  const register = async (
+  const registerUser = async (
     name: string,
     email: string,
     password: string
@@ -66,11 +66,13 @@ export function AuthProvider({
     message?: string;
   }> => {
     try {
+      console.log(name, email, password);
       const { data } = await instance.post("/register", {
         name,
         email,
         password,
       });
+      console.log('DATA', data);
       const { token, user } = data;
       Cookies.set("token", token);
       dispatch({ type: "Auth.Login", payload: user });
@@ -100,7 +102,7 @@ export function AuthProvider({
       value={{
         ...state,
         login,
-        register,
+        registerUser,
         logout,
       }}
     >

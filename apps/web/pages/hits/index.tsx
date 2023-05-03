@@ -9,7 +9,7 @@ import _ from "lodash";
 
 
 
-export default function ({}) {
+export default function HitsPage({}) {
   const { user } = useContext(AuthContext);
   const [isManager, setIsManager] = useState<boolean>(false)
   const [isBoss, setIsBoss] = useState<boolean>(false)

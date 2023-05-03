@@ -1,6 +1,6 @@
 import { AuthLayout } from "../../components/layouts/AuthLayout";
 
-export default function() {
+export default function HitmenIndexPage() {
   return (
     <AuthLayout title={'Hits'}>
 

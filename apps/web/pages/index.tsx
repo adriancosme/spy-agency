@@ -8,14 +8,13 @@ import { Simulate } from "react-dom/test-utils";
 import { useForm } from "react-hook-form";
 import styles from "../styles/login.module.css";
 import { validations } from "../utils";
-import error = Simulate.error;
 
 interface FormData {
   email: string;
   password: string;
 }
 
-export default function ({ hasInvalidCredentials }) {
+export default function IndexPage({ hasInvalidCredentials }) {
   const router = useRouter();
   const [showError, setShowError] = useState(false);
 
@@ -28,7 +27,6 @@ export default function ({ hasInvalidCredentials }) {
     try {
       setShowError(false);
       await signIn("credentials", { email, password, callbackUrl: "/hits" });
-      await router.push("hits");
     } catch (error) {
       setShowError(true);
     }
