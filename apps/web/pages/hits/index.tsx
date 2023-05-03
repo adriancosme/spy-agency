@@ -16,9 +16,9 @@ export default function HitsPage({}) {
   const [isHitman, setIsHitman] = useState<boolean>(false)
   useEffect(() => {
     if(user == null) return;
-    setIsManager(user?.user?.role === UserRole.MANAGER);
-    setIsBoss(user?.user?.role === UserRole.BOSS);
-    setIsHitman(user?.user?.role === UserRole.HITMAN);
+    setIsManager(user?.role === UserRole.MANAGER);
+    setIsBoss(user?.role === UserRole.BOSS);
+    setIsHitman(user?.role === UserRole.HITMAN);
   }, [user])
   if (isBoss) {
     return (

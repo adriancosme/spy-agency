@@ -26,7 +26,8 @@ export function AuthProvider({
   const { data, status } = useSession();
   useEffect(() => {
     if (status === "authenticated") {
-      dispatch({ type: "Auth.Login", payload: data?.user as IUser });
+      // @ts-ignore
+      dispatch({ type: "Auth.Login", payload: data.user.user });
     }
   }, [status, data]);
 
@@ -48,8 +49,8 @@ export function AuthProvider({
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
       const { data } = await instance.post("/login", { email, password });
-      const { token, user } = data;
-      Cookies.set("token", token);
+      const { accessToken, user } = data;
+      Cookies.set("token", accessToken);
       dispatch({ type: "Auth.Login", payload: user });
       return true;
     } catch (error) {
@@ -72,9 +73,8 @@ export function AuthProvider({
         email,
         password,
       });
-      console.log('DATA', data);
-      const { token, user } = data;
-      Cookies.set("token", token);
+      const { accessToken, user } = data;
+      Cookies.set("token", accessToken);
       dispatch({ type: "Auth.Login", payload: user });
       return {
         hasError: false,

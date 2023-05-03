@@ -3,6 +3,15 @@ import type { NextRequest } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
 export async function middleware(req: NextRequest) {
+  // Only BOSS can access to hitmen pages
+
+  if (req.nextUrl.pathname.startsWith('/hitmen')) {
+    const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+    // @ts-ignore
+    if (session?.user.role !== 'BOSS') {
+      return NextResponse.redirect(new URL('/hits', req.url));
+    }
+  }
 
   const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 

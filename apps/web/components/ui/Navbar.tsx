@@ -1,9 +1,6 @@
-import { useSession } from "next-auth/react";
-import styles from "../../styles/navbar.module.css";
-import { AppBar, Toolbar, Typography, Link, Box, Button } from "@mui/material";
+import { AppBar, Box, Button, Link, Toolbar, Typography } from "@mui/material";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import useAuth from "../../hooks/useAuth";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/Auth";
 import { UserRole } from "../../interfaces/user.interface";
@@ -11,8 +8,7 @@ import { UserRole } from "../../interfaces/user.interface";
 export default function Navbar() {
   const { asPath } = useRouter();
   const { user, logout } = useContext(AuthContext);
-  // @ts-ignore
-  const isBoss = user?.user?.role === UserRole.BOSS;
+  const isBoss = user?.role === UserRole.BOSS;
   return (
     <AppBar>
       <Toolbar>

@@ -1,5 +1,6 @@
 import Credentials from 'next-auth/providers/credentials';
 import NextAuth, { NextAuthOptions } from "next-auth";
+import { IUser } from '../../../interfaces/user.interface';
 
 export const AuthOptions: NextAuthOptions = {
   providers: [
@@ -64,9 +65,10 @@ export const AuthOptions: NextAuthOptions = {
     },
 
     async session({ session, token, user }) {
-      // console.log({ session, token, user });
-      session.accessToken = token.accessToken;
-      session.user = token.user as any;
+      // @ts-ignore
+      session.accessToken = token.user.accessToken;
+      session.user = token?.user as any;
+      console.log(session);
       return session;
     },
   },
