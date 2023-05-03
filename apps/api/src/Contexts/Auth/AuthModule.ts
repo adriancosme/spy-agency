@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
-import { PassportModule } from '@nestjs/passport';
+import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
-import { LoginPostController } from './infrastructure/controllers/LoginPostController';
-import { JwtStrategy } from './infrastructure/strategies/jwt.strategy';
-import { AuthService } from './infrastructure/services/auth.service';
-import { LocalStrategy } from './infrastructure/strategies/local.strategy';
-import { TypeOrmAuthRepository } from './infrastructure/persistence/typeorm/TypeOrmAuthRepository';
-import { CryptoService } from '../Shared/infrastructure/crypto.service';
+import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Hitman } from '../Hitmen/Infrastructure/persistence/typeorm/Hitman.entity';
-import { Configuration } from "../../Config/configuration";
-import { ConfigService } from "@nestjs/config";
-
+import { CryptoService } from '../Shared/infrastructure/crypto.service';
+import { LoginPostController } from './infrastructure/controllers/LoginPostController';
+import { TypeOrmAuthRepository } from './infrastructure/persistence/typeorm/TypeOrmAuthRepository';
+import { AuthService } from './infrastructure/services/auth.service';
+import { JwtStrategy } from './infrastructure/strategies/jwt.strategy';
+import { LocalStrategy } from './infrastructure/strategies/local.strategy';
+import { RegisterPostController } from './infrastructure/controllers/RegisterPostController';
+import { TypeOrmHitmanRepository } from '../Hitmen/Infrastructure/persistence/typeorm/TypeOrmHitmanRepository';
 
 @Module({
   imports: [
@@ -27,7 +27,7 @@ import { ConfigService } from "@nestjs/config";
       },
     }),
   ],
-  controllers: [LoginPostController],
+  controllers: [LoginPostController, RegisterPostController],
   providers: [
     ConfigService,
     AuthService,
@@ -35,8 +35,8 @@ import { ConfigService } from "@nestjs/config";
     JwtStrategy,
     TypeOrmAuthRepository,
     CryptoService,
+    TypeOrmHitmanRepository,
   ],
   exports: [TypeOrmAuthRepository],
 })
-export class AuthModule {
-}
+export class AuthModule {}

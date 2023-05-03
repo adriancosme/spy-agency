@@ -10,8 +10,10 @@ export class HitmanRepositoryMock implements HitmanRepository {
   private searchByEmailMock: jest.Mock = jest.fn();
   private updateMock: jest.Mock = jest.fn();
   private searchByManagedByMock: jest.Mock = jest.fn();
+  private nextIdMock = jest.fn();
   private hitmen: Array<Hitman> = [];
   private hitman: Hitman;
+  private id: number;
   returnSearchById(hitman: Hitman): void {
     this.hitman = hitman;
   }
@@ -70,5 +72,10 @@ export class HitmanRepositoryMock implements HitmanRepository {
 
   assertUpdateHaveBeenCalledWith(expected: Hitman): void {
     expect(this.updateMock).toHaveBeenCalledWith(expected);
+  }
+
+  async nextId(): Promise<number> {
+    await this.nextIdMock();
+    return this.id;
   }
 }

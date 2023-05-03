@@ -10,6 +10,7 @@ export class TypeOrmHitmanRepository implements HitmanRepository {
     @InjectRepository(HitmanEntity)
     private repository: Repository<HitmanEntity>,
   ) {}
+
   async searchByManagedBy(managerId: number): Promise<Hitman[]> {
     return await this.repository.find({
       where: {
@@ -46,5 +47,13 @@ export class TypeOrmHitmanRepository implements HitmanRepository {
 
   async update(hitman: Hitman): Promise<void> {
     await this.repository.save(hitman);
+  }
+
+  async nextId(): Promise<number> {
+    const queryResult = await this.repository.query(
+      "SELECT nextval(pg_get_serial_sequence('hitman', 'id'));",
+    );
+    const nextId = queryResult[0].nextval;
+    return nextId;
   }
 }
