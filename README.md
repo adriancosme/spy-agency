@@ -37,17 +37,9 @@ Think about what is the best architecture that achieves a good balance between:
 9. Ease of distributing development load.
 There’s no right answer, but a combination of the above should be a good start. You’ll notice a common word though: ease.
 
-## Using this example
-
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
-
 ## What's inside?
 
-This Turborepo includes the following packages/apps:
+This monorepo includes the following packages/apps:
 
 ### Apps and Packages
 
