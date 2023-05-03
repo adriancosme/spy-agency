@@ -26,7 +26,6 @@ export default function RegisterPage(): JSX.Element {
   const onSubmitHandler = async ({ name, email, password }: FormData) => {
     const { hasError, message } = await registerUser(name, email, password);
     if (hasError) {
-      console.log(hasError, message);
       setShowError(true);
       setErrorMessage(message!);
       setTimeout(() => setShowError(false), 3000);

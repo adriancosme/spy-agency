@@ -67,7 +67,6 @@ export function AuthProvider({
     message?: string;
   }> => {
     try {
-      console.log(name, email, password);
       const { data } = await instance.post("/register", {
         name,
         email,

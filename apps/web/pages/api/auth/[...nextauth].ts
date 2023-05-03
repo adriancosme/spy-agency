@@ -68,7 +68,6 @@ export const AuthOptions: NextAuthOptions = {
       // @ts-ignore
       session.accessToken = token.user.accessToken;
       session.user = token?.user as any;
-      console.log(session);
       return session;
     },
   },

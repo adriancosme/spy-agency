@@ -6,6 +6,8 @@ import { AuthLayout } from "../../components/layouts/AuthLayout";
 import { AuthContext } from "../../contexts/Auth";
 import { UserRole } from "../../interfaces/user.interface";
 import _ from "lodash";
+import useHits from "../../hooks/useHits";
+import { toast } from "react-hot-toast";
 
 
 
@@ -14,6 +16,9 @@ export default function HitsPage({}) {
   const [isManager, setIsManager] = useState<boolean>(false)
   const [isBoss, setIsBoss] = useState<boolean>(false)
   const [isHitman, setIsHitman] = useState<boolean>(false)
+
+
+
   useEffect(() => {
     if(user == null) return;
     setIsManager(user?.role === UserRole.MANAGER);
@@ -29,10 +34,18 @@ export default function HitsPage({}) {
   }
 
   if (isManager) {
+    const {hits: myHits, isLoading: isLoadingMyHits} = useHits(`/hits/assignedTo/${user?.id}`);
+    const {hits: managerHits, isLoading: isLoadingManagerHits} = useHits(`/hits/${user?.id}`);
+    if(isLoadingMyHits) {
+      toast.loading("Loading your hits...")
+    }
+    if(isLoadingManagerHits) {
+      toast.loading("Loading your hits...")
+    }
     return (
       <AuthLayout title={"Hits"}>
-        <MyHits hits={[]} />
-        <LackeyHits hits={[]} />
+        <MyHits hits={myHits} />
+        <LackeyHits hits={managerHits} />
       </AuthLayout>
     );
   }
