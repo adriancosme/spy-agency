@@ -8,6 +8,8 @@ import { UserRole } from "../../interfaces/user.interface";
 import MyHits from "../../components/MyHits";
 import LackeyHits from "../../components/LackeyHits";
 import { useRouter } from "next/router";
+import { Box, Button } from "@mui/material";
+import Link from "next/link";
 
 export default function HitsPage({
   allHits,
@@ -21,8 +23,8 @@ export default function HitsPage({
   userRole: UserRole;
 }) {
   const router = useRouter();
-  if(userRole == null) {
-    router.push('/404')
+  if (userRole == null) {
+    router.push("/404");
   }
   const isBoss = userRole === UserRole.BOSS;
   const isManager = userRole === UserRole.MANAGER;
@@ -30,6 +32,11 @@ export default function HitsPage({
   if (isBoss) {
     return (
       <AuthLayout title="BOSS - HITS">
+        <Box display={"flex"} justifyContent={"flex-end"}>
+          <Link href={"/hits/create"}>
+            <Button color="primary">Add hit</Button>
+          </Link>
+        </Box>
         <AllHits hits={allHits} />
       </AuthLayout>
     );
@@ -38,6 +45,7 @@ export default function HitsPage({
   if (isManager) {
     return (
       <AuthLayout title="MANAGER - HITS">
+        <Button>Add hit</Button>
         <MyHits hits={myHits} />
         <LackeyHits hits={managerHits} />
       </AuthLayout>
