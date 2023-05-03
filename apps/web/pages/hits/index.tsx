@@ -7,6 +7,7 @@ import { IHit } from "../../interfaces/hit.interface";
 import { UserRole } from "../../interfaces/user.interface";
 import MyHits from "../../components/MyHits";
 import LackeyHits from "../../components/LackeyHits";
+import { useRouter } from "next/router";
 
 export default function HitsPage({
   allHits,
@@ -19,6 +20,10 @@ export default function HitsPage({
   managerHits: IHit[];
   userRole: UserRole;
 }) {
+  const router = useRouter();
+  if(userRole == null) {
+    router.push('/404')
+  }
   const isBoss = userRole === UserRole.BOSS;
   const isManager = userRole === UserRole.MANAGER;
   const isHitman = userRole === UserRole.HITMAN;
