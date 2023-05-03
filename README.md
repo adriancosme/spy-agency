@@ -75,3 +75,8 @@ To develop all apps and packages, run the following command:
 cd spy-agency
 pnpm dev
 ```
+
+### Frontend app deploy on Vercel
+https://spy-agency-web.vercel.app/
+### Backend deploy on Render
+
