@@ -11,6 +11,7 @@ import { UserRole } from "../../interfaces/user.interface";
 export default function Navbar() {
   const { asPath } = useRouter();
   const { user, logout } = useContext(AuthContext);
+  // @ts-ignore
   const isBoss = user?.user?.role === UserRole.BOSS;
   return (
     <AppBar>
