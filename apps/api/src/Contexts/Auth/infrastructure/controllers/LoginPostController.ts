@@ -1,11 +1,10 @@
 import { Body, Controller, Post, UnauthorizedException } from '@nestjs/common';
-import { UserAuthenticator } from '../../application/UserAuthenticator';
-import { TypeOrmAuthRepository } from '../persistence/typeorm/TypeOrmAuthRepository';
 import { CryptoService } from '../../../Shared/infrastructure/crypto.service';
-import { LoginRequestDto } from '../DTO/LoginRequestDto';
-import { JwtService } from '@nestjs/jwt';
+import { UserAuthenticator } from '../../application/UserAuthenticator';
 import { Token } from '../../domain/Token';
-import { AuthService } from "../services/auth.service";
+import { LoginRequestDto } from '../DTO/LoginRequestDto';
+import { TypeOrmAuthRepository } from '../persistence/typeorm/TypeOrmAuthRepository';
+import { AuthService } from '../services/auth.service';
 
 @Controller('login')
 export class LoginPostController {
