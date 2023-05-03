@@ -9,9 +9,11 @@ export class TypeOrmHitsRepository implements HitRepository {
     private repository: Repository<HitEntity>,
   ) {}
   async searchByAssignedTo(assignedTo: number): Promise<Hit[]> {
-    return this.repository.find({
+    return await this.repository.find({
       where: {
-        assignedTo,
+        assignedTo: {
+          id: assignedTo,
+        },
       },
     });
   }

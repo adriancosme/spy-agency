@@ -1,12 +1,13 @@
-import { Hit } from '../domain';
+import { Hitman } from '../../Hitmen/domain';
+import { Hit, HitStatusEnum } from '../domain';
 
 interface HitResponse {
   id: string;
-  assignedTo: number;
+  assignedTo: Hitman;
   description: string;
   target: string;
-  status: string;
-  createdBy: number;
+  status: HitStatusEnum;
+  createdBy: Hitman;
 }
 
 export class HitsResponse {

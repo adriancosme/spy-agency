@@ -1,5 +1,9 @@
 import { Hit, HitRepository, HitStatusEnum } from '../../domain';
-import { HitmanRepository, HitmanStatusEnum } from '../../../Hitmen/domain';
+import {
+  Hitman,
+  HitmanRepository,
+  HitmanStatusEnum,
+} from '../../../Hitmen/domain';
 
 export class HitCreator {
   constructor(
@@ -9,13 +13,15 @@ export class HitCreator {
 
   async run(
     id: string,
-    assignedTo: number,
+    assignedTo: Hitman,
     description: string,
     target: string,
     status: HitStatusEnum,
-    createdBy: number,
+    createdBy: Hitman,
   ) {
-    const hitmanAssignedTo = await this.hitmanRepository.searchById(assignedTo);
+    const hitmanAssignedTo = await this.hitmanRepository.searchById(
+      assignedTo.id,
+    );
     if (hitmanAssignedTo == null) {
       throw new Error('Hitman not found');
     }
@@ -24,7 +30,7 @@ export class HitCreator {
     }
     const hit = new Hit(
       id,
-      hitmanAssignedTo.id,
+      hitmanAssignedTo,
       description,
       target,
       status,

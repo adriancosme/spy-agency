@@ -1,20 +1,21 @@
+import { Hitman } from 'src/Contexts/Hitmen/domain';
 import { HitStatusEnum } from './';
 
 export class Hit {
   readonly id: string;
-  readonly assignedTo: number;
+  readonly assignedTo: Hitman;
   readonly description: string;
   readonly target: string;
   readonly status: HitStatusEnum;
-  readonly createdBy: number;
+  readonly createdBy: Hitman;
 
   constructor(
     id: string,
-    assignedTo: number,
+    assignedTo: Hitman,
     description: string,
     target: string,
     status: HitStatusEnum,
-    createdBy: number,
+    createdBy: Hitman,
   ) {
     this.id = id;
     this.assignedTo = assignedTo;

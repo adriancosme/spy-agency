@@ -8,7 +8,7 @@ export class Hit {
   id: string;
 
   @ManyToOne(() => Hitman, (hitman) => hitman.hits)
-  assignedTo: number;
+  assignedTo: Hitman;
 
   @Column()
   description: string;
@@ -22,5 +22,5 @@ export class Hit {
   status: HitStatusEnum;
 
   @ManyToOne(() => Hitman, (hitman) => hitman.createdHits)
-  createdBy: number;
+  createdBy: Hitman;
 }
