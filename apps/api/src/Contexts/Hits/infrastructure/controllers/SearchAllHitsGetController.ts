@@ -25,7 +25,6 @@ export class SearchAllHitsGetController {
   @Get('/all')
   async run(@Req() request: Request) {
     const { id } = request.user as Hitman;
-    console.log(id);
     if (!this.ensureIsBoss(Number(id))) {
       throw new Error('User is not a boss');
     }

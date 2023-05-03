@@ -23,7 +23,6 @@ export class LoginPostController {
       );
       return await authenticator.authenticate(body.email, body.password);
     } catch (error: any) {
-      console.log(error);
       throw new UnauthorizedException(error.message);
     }
   }
