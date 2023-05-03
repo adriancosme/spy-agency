@@ -76,8 +76,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       },
     };
   }
+  // @ts-ignore
   const token = session?.user?.accessToken;
+  // @ts-ignore
   const userId = session?.user?.id;
+  // @ts-ignore
   const userRole = session?.user?.role;
   const resAllHits = await fetch(
     `${process.env.BASE_URL}${ALL_HITS_ENDPOINT}`,

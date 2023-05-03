@@ -18,7 +18,7 @@ export default function MyHits({ hits }: { hits: IHit[] }) {
           {hits.length > 0 ? (
             <Hits hits={hits} />
           ) : (
-            <Typography>You don't have any hits</Typography>
+            <Typography>You dont have any hits</Typography>
           )}
         </AccordionDetails>
       </Accordion>
