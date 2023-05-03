@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/Auth";
 import { UserRole } from "../../interfaces/user.interface";
 
-export default function () {
+export default function Navbar() {
   const { asPath } = useRouter();
   const { user, logout } = useContext(AuthContext);
   const isBoss = user?.user?.role === UserRole.BOSS;

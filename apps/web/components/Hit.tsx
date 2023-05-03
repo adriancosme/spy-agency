@@ -10,7 +10,7 @@ import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import React from "react";
 import { useRouter } from "next/router";
-export default function ({
+export default function Hit({
   id,
   createdBy,
   target,
