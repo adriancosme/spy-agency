@@ -30,7 +30,22 @@ export class TypeOrmHitsRepository implements HitRepository {
   }
 
   async searchAll(): Promise<Hit[]> {
-    return await this.repository.find();
+    return await this.repository.find({
+      relations: {
+        assignedTo: true,
+        createdBy: true,
+      },
+      select: {
+        createdBy: {
+          id: true,
+          name: true,
+        },
+        assignedTo: {
+          id: true,
+          name: true,
+        },
+      },
+    });
   }
 
   async searchById(id: string): Promise<Hit | null> {

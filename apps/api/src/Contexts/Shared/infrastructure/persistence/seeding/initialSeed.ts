@@ -1,7 +1,7 @@
 import { Client } from 'pg';
 import { data } from './data/hitmen.data';
-import { config } from 'dotenv';
-config();
+import * as dotenv from 'dotenv';
+dotenv.config();
 async function initialSeed() {
   const client = new Client({
     user: process.env.TYPEORM_USERNAME,

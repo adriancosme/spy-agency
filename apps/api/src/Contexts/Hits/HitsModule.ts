@@ -8,6 +8,7 @@ import { SearchByGroupAssignedToGetController } from './infrastructure/controlle
 import { Hitman } from '../Hitmen/Infrastructure/persistence/typeorm/Hitman.entity';
 import { TypeOrmHitmanRepository } from '../Hitmen/Infrastructure/persistence/typeorm/TypeOrmHitmanRepository';
 import { SearchByIdGetController } from './infrastructure/controllers/SearchByIdGetController';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Hit, Hitman])],
@@ -17,7 +18,7 @@ import { SearchByIdGetController } from './infrastructure/controllers/SearchById
     SearchByGroupAssignedToGetController,
     SearchByIdGetController,
   ],
-  providers: [TypeOrmHitsRepository, TypeOrmHitmanRepository],
+  providers: [TypeOrmHitsRepository, TypeOrmHitmanRepository, JwtService],
   exports: [],
 })
 export class HitsModule {}

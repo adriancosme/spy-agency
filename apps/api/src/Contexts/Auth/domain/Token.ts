@@ -1,6 +1,5 @@
 import { Hitman } from '../../Shared/domain/Hitman';
 
-export class Token {
+export class Token extends Hitman {
   accessToken: string;
-  user: Hitman;
 }

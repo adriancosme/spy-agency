@@ -11,7 +11,7 @@ export class SearchByGroupAssignedToGetController {
     private hitRepository: TypeOrmHitsRepository,
   ) {}
 
-  @Get('/:managerId')
+  @Get('/manager/:managerId')
   async get(@Param('managerId') managerId: number) {
     const hitmanSearcher = new SearchByManagerSearcher(this.hitmanRepository);
     const hitmenManagedByManager = await hitmanSearcher.run(managerId);
