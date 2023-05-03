@@ -52,7 +52,6 @@ export const AuthOptions: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token, account, user }) {
-      // console.log({ token, account, user });
       if (account) {
         token.accessToken = account.access_token;
         switch (account.type) {
@@ -67,7 +66,7 @@ export const AuthOptions: NextAuthOptions = {
     async session({ session, token, user }) {
       // @ts-ignore
       session.accessToken = token.user.accessToken;
-      session.user = token?.user as any;
+      session.role = token.user.role;
       return session;
     },
   },

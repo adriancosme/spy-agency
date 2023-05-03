@@ -6,7 +6,7 @@ import { IHit } from "../interfaces/hit.interface";
 export default function AllHits({ hits }: { hits: IHit[] }) {
   return (
     <section>
-      <Accordion>
+      <Accordion expanded={true}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -15,7 +15,7 @@ export default function AllHits({ hits }: { hits: IHit[] }) {
           <Typography>All hits</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Hits hits={hits} />
+          {hits.length ? <Hits hits={hits} /> : "Theres no hits"}
         </AccordionDetails>
       </Accordion>
     </section>

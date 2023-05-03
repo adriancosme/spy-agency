@@ -20,7 +20,7 @@ export default function Navbar() {
         </NextLink>
         <Box flex={1} />
         <Box sx={{ display: "flex", gap: "2rem" }}>
-          <NextLink href="/hits">
+          <NextLink href="/hits" passHref legacyBehavior>
             <Link>
               <Button color={asPath === "/hits" ? "primary" : "info"} sx={{ '&:hover': {color: 'black'}}}>
                 Hits
@@ -28,7 +28,7 @@ export default function Navbar() {
             </Link>
           </NextLink>
           {isBoss && (
-            <NextLink href="/hitmen">
+            <NextLink href="/hitmen" passHref legacyBehavior>
               <Link>
                 <Button color={asPath === "/hitmen" ? "primary" : "info"} sx={{ '&:hover': {color: 'black'}}}>
                   Hitmen
@@ -36,9 +36,9 @@ export default function Navbar() {
               </Link>
             </NextLink>
           )}
-          <NextLink href="/logout" onClick={() => logout()}>
+          <NextLink href="/logout" passHref legacyBehavior>
               <Link>
-                <Button color={asPath === "/logout" ? "primary" : "info"} sx={{ '&:hover': {color: 'black'}}}>
+                <Button onClick={logout} sx={{ '&:hover': {color: 'black'}}}>
                   Logout
                 </Button>
               </Link>

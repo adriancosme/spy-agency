@@ -11,7 +11,7 @@ export interface IHit {
 
   id: string;
 
-  assignedTo: number | IUser;
+  assignedTo: IUser;
 
   description: string;
 
@@ -19,5 +19,5 @@ export interface IHit {
 
   status: HitStatus;
 
-  createdBy: number | IUser;
+  createdBy: IUser;
 }

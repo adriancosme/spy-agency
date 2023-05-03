@@ -83,7 +83,6 @@ export const getServerSideProps: GetServerSideProps = async ({
     };
   }
   const session = await getSession({ req });
-  // console.log({session});
 
   const { p = "/" } = query;
 

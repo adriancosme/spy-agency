@@ -53,7 +53,9 @@ export default function Hit({
               >
                 Created by {createdBy}
               </Typography>
-              {description}
+              <Typography>
+                {description}
+              </Typography>
             </React.Fragment>
           }
         />

@@ -51,6 +51,7 @@ export function AuthProvider({
       const { data } = await instance.post("/login", { email, password });
       const { accessToken, user } = data;
       Cookies.set("token", accessToken);
+      localStorage.setItem("user", JSON.stringify(user));
       dispatch({ type: "Auth.Login", payload: user });
       return true;
     } catch (error) {
@@ -94,6 +95,7 @@ export function AuthProvider({
   };
 
   const logout = () => {
+    localStorage.clear();
     signOut({callbackUrl: "/"});
   };
   return (

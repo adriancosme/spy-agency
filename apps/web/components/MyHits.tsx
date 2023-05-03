@@ -15,8 +15,11 @@ export default function MyHits({ hits }: { hits: IHit[] }) {
           <Typography>My Hits</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>Assigned Hits</Typography>
-          <Hits hits={hits} />
+          {hits.length > 0 ? (
+            <Hits hits={hits} />
+          ) : (
+            <Typography>You don't have any hits</Typography>
+          )}
         </AccordionDetails>
       </Accordion>
     </section>
