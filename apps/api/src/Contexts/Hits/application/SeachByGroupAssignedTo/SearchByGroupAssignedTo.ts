@@ -1,6 +1,6 @@
 import { Hit, HitRepository } from '../../domain';
 
-export class SearchByGroupAssignedTo {
+export class SearchByGroupAssignedToSearcher {
   constructor(private hitRepository: HitRepository) {}
 
   async run(assignedTo: number[]): Promise<Hit[]> {

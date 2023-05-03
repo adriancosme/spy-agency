@@ -7,6 +7,7 @@ import { SearchByAssignedToGetController } from './infrastructure/controllers/Se
 import { SearchByGroupAssignedToGetController } from './infrastructure/controllers/SearchByGroupAssignedToGetController';
 import { Hitman } from '../Hitmen/Infrastructure/persistence/typeorm/Hitman.entity';
 import { TypeOrmHitmanRepository } from '../Hitmen/Infrastructure/persistence/typeorm/TypeOrmHitmanRepository';
+import { SearchByIdGetController } from './infrastructure/controllers/SearchByIdGetController';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Hit, Hitman])],
@@ -14,6 +15,7 @@ import { TypeOrmHitmanRepository } from '../Hitmen/Infrastructure/persistence/ty
     SearchAllHitsGetController,
     SearchByAssignedToGetController,
     SearchByGroupAssignedToGetController,
+    SearchByIdGetController,
   ],
   providers: [TypeOrmHitsRepository, TypeOrmHitmanRepository],
   exports: [],
