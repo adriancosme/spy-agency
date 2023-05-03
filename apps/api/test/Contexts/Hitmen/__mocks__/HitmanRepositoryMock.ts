@@ -9,6 +9,7 @@ export class HitmanRepositoryMock implements HitmanRepository {
   private searchByIdMock: jest.Mock = jest.fn();
   private searchByEmailMock: jest.Mock = jest.fn();
   private updateMock: jest.Mock = jest.fn();
+  private searchByManagedByMock: jest.Mock = jest.fn();
   private hitmen: Array<Hitman> = [];
   private hitman: Hitman;
   returnSearchById(hitman: Hitman): void {
@@ -21,6 +22,11 @@ export class HitmanRepositoryMock implements HitmanRepository {
 
   returnSearchAll(hitmen: Array<Hitman>): void {
     this.hitmen = hitmen;
+  }
+
+  async searchByManagedBy(managerId: number): Promise<Hitman[]> {
+    this.searchByManagedByMock(managerId);
+    return this.hitmen;
   }
 
   async save(hitman: Hitman): Promise<void> {

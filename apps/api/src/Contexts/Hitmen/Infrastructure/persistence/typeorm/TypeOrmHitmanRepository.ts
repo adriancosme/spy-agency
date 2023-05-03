@@ -10,6 +10,15 @@ export class TypeOrmHitmanRepository implements HitmanRepository {
     @InjectRepository(HitmanEntity)
     private repository: Repository<HitmanEntity>,
   ) {}
+  async searchByManagedBy(managerId: number): Promise<Hitman[]> {
+    return await this.repository.find({
+      where: {
+        managedBy: {
+          id: managerId,
+        },
+      },
+    });
+  }
 
   async save(hitman: Hitman): Promise<void> {
     await this.repository.save(hitman);

@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Configuration } from './Config/configuration';
 import { Hit } from './Contexts/Hits/infrastructure/persistence/typeorm/Hit.entity';
 import { Hitman } from './Contexts/Hitmen/Infrastructure/persistence/typeorm/Hitman.entity';
+import { HitsModule } from './Contexts/Hits/HitsModule';
 
 @Module({
   imports: [
@@ -17,12 +18,13 @@ import { Hitman } from './Contexts/Hitmen/Infrastructure/persistence/typeorm/Hit
     }),
     AuthModule,
     HitmanModule,
+    HitsModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       async useFactory(config: ConfigService) {
         return {
-          type: "postgres",
+          type: 'postgres',
           host: config.get(Configuration.TYPEORM_HOST),
           port: config.get(Configuration.TYPEORM_PORT),
           username: config.get(Configuration.TYPEORM_USERNAME),

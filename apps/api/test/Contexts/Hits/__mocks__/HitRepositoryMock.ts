@@ -2,12 +2,15 @@ import { HitRepository, Hit } from '../../../../src/Contexts/Hits/domain';
 import { Criteria } from 'src/Contexts/Shared/domain/criteria/Criteria';
 
 export class HitRepositoryMock implements HitRepository {
+
   private saveMock = jest.fn();
   private searchAllMock = jest.fn();
   private searchByIdMock = jest.fn();
   private deleteMock = jest.fn();
   private updateMock = jest.fn();
   private matchingMock = jest.fn();
+  private searchByAssignedToMock = jest.fn();
+  private searchByAssignedToGroupMock = jest.fn();
   private hit: Hit;
   private hits: Hit[];
 
@@ -21,6 +24,15 @@ export class HitRepositoryMock implements HitRepository {
 
   returnMatching(hits: Hit[]): void {
     this.hits = hits;
+  }
+
+  async searchByAssignedTo(assignedTo: number): Promise<Hit[]> {
+    await this.searchByAssignedToMock(assignedTo);
+    return this.hits;
+  }
+  async searchByAssignedToGroup(assignedTo: number[]): Promise<Hit[]> {
+    await this.searchByAssignedToGroupMock(assignedTo);
+    return this.hits;
   }
 
   async save(hit: Hit): Promise<void> {

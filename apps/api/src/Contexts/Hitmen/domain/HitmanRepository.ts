@@ -9,5 +9,7 @@ export interface HitmanRepository {
 
   searchByEmail(email: string): Promise<Hitman | null>;
 
+  searchByManagedBy(managerId: number): Promise<Array<Hitman>>;
+
   update(hitman: Hitman): Promise<void>;
 }

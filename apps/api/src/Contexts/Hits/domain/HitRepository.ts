@@ -5,6 +5,7 @@ export interface HitRepository {
   save(hit: Hit): Promise<void>;
   searchAll(): Promise<Hit[]>;
   searchById(id: string): Promise<Hit | null>;
-  matching(criteria: Criteria): Promise<Hit[]>;
+  searchByAssignedTo(assignedTo: number): Promise<Hit[]>;
+  searchByAssignedToGroup(assignedTo: number[]): Promise<Hit[]>;
   update(hit: Hit): Promise<void>;
 }
