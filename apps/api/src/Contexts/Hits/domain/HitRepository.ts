@@ -1,4 +1,3 @@
-import { Criteria } from '../../Shared/domain/criteria/Criteria';
 import { Hit } from './Hit';
 
 export interface HitRepository {

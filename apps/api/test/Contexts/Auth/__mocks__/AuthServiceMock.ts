@@ -1,7 +1,7 @@
 import { UserAuth } from '../../../../src/Contexts/Auth/domain/UserAuth';
-import { AuthServiceContract } from "../../../../src/Contexts/Auth/infrastructure/interfaces/AuthServiceContract";
+import { AuthServiceContract } from '../../../../src/Contexts/Auth/infrastructure/interfaces/AuthServiceContract';
 
-export class AuthServiceMock implements AuthServiceContract{
+export class AuthServiceMock implements AuthServiceContract {
   validateUser = jest
     .fn()
     .mockImplementation((userEmail: string, userPassword: string) => {
@@ -12,8 +12,7 @@ export class AuthServiceMock implements AuthServiceContract{
       return null;
     });
 
-  login = jest.fn().mockImplementation((user: UserAuth) => {
-    const payload = { email: user.email, id: user.id };
+  login = jest.fn().mockImplementation((_user: UserAuth) => {
     return {
       accessToken: 'access_token',
     };

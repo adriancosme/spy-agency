@@ -24,10 +24,10 @@ export class AuthService {
   }
 
   async login(user: Hitman): Promise<Token> {
-    const payload = { email: user.email, id: user.id  };
+    const payload = { email: user.email, id: user.id };
     return {
       accessToken: this.jwtService.sign(payload),
-      user: {...user}
+      user: { ...user },
     };
   }
 }

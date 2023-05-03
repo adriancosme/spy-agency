@@ -1,6 +1,6 @@
-import { Client} from "pg";
-import { data } from "./data/hitmen.data";
-import { config } from "dotenv";
+import { Client } from 'pg';
+import { data } from './data/hitmen.data';
+import { config } from 'dotenv';
 config();
 async function initialSeed() {
   const client = new Client({
@@ -13,9 +13,17 @@ async function initialSeed() {
   await client.connect();
   try {
     await client.query('BEGIN');
-    for(const hitman of data) {
+    for (const hitman of data) {
       const query = `INSERT INTO hitman (id, name, email, password, role, status, "managedById") VALUES ($1, $2, $3, $4, $5, $6, $7)`;
-      const values = [hitman.id, hitman.name, hitman.email, hitman.password, hitman.role, hitman.status, hitman.managedBy?.id];
+      const values = [
+        hitman.id,
+        hitman.name,
+        hitman.email,
+        hitman.password,
+        hitman.role,
+        hitman.status,
+        hitman.managedBy?.id,
+      ];
       await client.query(query, values);
     }
     await client.query('COMMIT');

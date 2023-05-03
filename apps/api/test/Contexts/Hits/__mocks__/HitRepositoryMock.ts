@@ -2,7 +2,6 @@ import { HitRepository, Hit } from '../../../../src/Contexts/Hits/domain';
 import { Criteria } from 'src/Contexts/Shared/domain/criteria/Criteria';
 
 export class HitRepositoryMock implements HitRepository {
-
   private saveMock = jest.fn();
   private searchAllMock = jest.fn();
   private searchByIdMock = jest.fn();

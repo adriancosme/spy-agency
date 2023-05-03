@@ -12,5 +12,5 @@ export const data: Hitman[] = [
     password: hashPass,
     role: HitmanRoleEnum.BOSS,
     status: HitmanStatusEnum.ACTIVE,
-  } as Hitman
-]
+  } as Hitman,
+];

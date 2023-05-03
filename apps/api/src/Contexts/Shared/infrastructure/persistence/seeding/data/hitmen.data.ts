@@ -13,8 +13,8 @@ export const data: Hitman[] = [
     role: HitmanRoleEnum.HITMAN,
     status: HitmanStatusEnum.ACTIVE,
     managedBy: {
-      id: faker.datatype.number({min: 2, max: 4})
-    } as Hitman
+      id: faker.datatype.number({ min: 2, max: 4 }),
+    } as Hitman,
   } as Hitman,
   {
     id: 6,
@@ -24,8 +24,8 @@ export const data: Hitman[] = [
     role: HitmanRoleEnum.HITMAN,
     status: HitmanStatusEnum.ACTIVE,
     managedBy: {
-      id: faker.datatype.number({min: 2, max: 4})
-    } as Hitman
+      id: faker.datatype.number({ min: 2, max: 4 }),
+    } as Hitman,
   } as Hitman,
   {
     id: 7,
@@ -35,8 +35,8 @@ export const data: Hitman[] = [
     role: HitmanRoleEnum.HITMAN,
     status: HitmanStatusEnum.ACTIVE,
     managedBy: {
-      id: faker.datatype.number({min: 2, max: 4})
-    } as Hitman
+      id: faker.datatype.number({ min: 2, max: 4 }),
+    } as Hitman,
   } as Hitman,
   {
     id: 8,
@@ -46,8 +46,8 @@ export const data: Hitman[] = [
     role: HitmanRoleEnum.HITMAN,
     status: HitmanStatusEnum.ACTIVE,
     managedBy: {
-      id: faker.datatype.number({min: 2, max: 4})
-    } as Hitman
+      id: faker.datatype.number({ min: 2, max: 4 }),
+    } as Hitman,
   } as Hitman,
   {
     id: 9,
@@ -57,8 +57,8 @@ export const data: Hitman[] = [
     role: HitmanRoleEnum.HITMAN,
     status: HitmanStatusEnum.ACTIVE,
     managedBy: {
-      id: faker.datatype.number({min: 2, max: 4})
-    } as Hitman
+      id: faker.datatype.number({ min: 2, max: 4 }),
+    } as Hitman,
   } as Hitman,
   {
     id: 10,
@@ -68,8 +68,8 @@ export const data: Hitman[] = [
     role: HitmanRoleEnum.HITMAN,
     status: HitmanStatusEnum.ACTIVE,
     managedBy: {
-      id: faker.datatype.number({min: 2, max: 4})
-    } as Hitman
+      id: faker.datatype.number({ min: 2, max: 4 }),
+    } as Hitman,
   } as Hitman,
   {
     id: 11,
@@ -79,8 +79,8 @@ export const data: Hitman[] = [
     role: HitmanRoleEnum.HITMAN,
     status: HitmanStatusEnum.ACTIVE,
     managedBy: {
-      id: faker.datatype.number({min: 2, max: 4})
-    } as Hitman
+      id: faker.datatype.number({ min: 2, max: 4 }),
+    } as Hitman,
   } as Hitman,
   {
     id: 12,
@@ -90,8 +90,8 @@ export const data: Hitman[] = [
     role: HitmanRoleEnum.HITMAN,
     status: HitmanStatusEnum.ACTIVE,
     managedBy: {
-      id: faker.datatype.number({min: 2, max: 4})
-    } as Hitman
+      id: faker.datatype.number({ min: 2, max: 4 }),
+    } as Hitman,
   } as Hitman,
   {
     id: 13,
@@ -101,7 +101,7 @@ export const data: Hitman[] = [
     role: HitmanRoleEnum.HITMAN,
     status: HitmanStatusEnum.ACTIVE,
     managedBy: {
-      id: faker.datatype.number({min: 2, max: 4})
-    } as Hitman
+      id: faker.datatype.number({ min: 2, max: 4 }),
+    } as Hitman,
   } as Hitman,
-]
+];

@@ -4,5 +4,4 @@ export class CuidMother {
   static random(): string {
     return createId();
   }
-
 }

@@ -29,5 +29,4 @@ export const data: Hitman[] = [
     role: HitmanRoleEnum.MANAGER,
     status: HitmanStatusEnum.ACTIVE,
   } as Hitman,
-
-]
+];

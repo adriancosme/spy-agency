@@ -1,8 +1,7 @@
-import { Hit, HitRepository } from '../../domain';
-import { Criteria } from '../../../Shared/domain/criteria/Criteria';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Hit as HitEntity } from '../../../Hits/infrastructure/persistence/typeorm/Hit.entity';
+import { Hit, HitRepository } from '../../domain';
 
 export class TypeOrmHitsRepository implements HitRepository {
   constructor(

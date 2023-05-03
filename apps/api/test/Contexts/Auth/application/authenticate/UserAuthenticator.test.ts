@@ -9,7 +9,7 @@ import { HitmanNameMother } from '../../../Hitmen/domain/HitmanNameMother';
 import { HitmanStatusMother } from '../../../Hitmen/domain/HitmanStatusMother';
 import { HitmanRoleMother } from '../../../Hitmen/domain/HitmanRoleMother';
 import { HitmanMother } from '../../../Hitmen/domain/HitmanMother';
-import { AuthServiceMock } from "../../__mocks__/AuthServiceMock";
+import { AuthServiceMock } from '../../__mocks__/AuthServiceMock';
 
 describe('UserAuthenticator', () => {
   let repository: AuthRepositoryMock;
